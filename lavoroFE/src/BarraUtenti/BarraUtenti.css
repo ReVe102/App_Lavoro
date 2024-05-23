@@ -1,0 +1,50 @@
+
+.BarraUtenti{
+    display: flex;
+    flex-direction: column;
+    flex: 0.35;  
+}
+
+.BarraUtenti_header{ 
+    display: flex;
+    justify-content: space-between;
+    padding :10px;
+    border-right: 1px solid blue;
+
+}
+
+.BarraUtenti_Header_left{  
+    align-items: center;
+}
+
+.BarraUtenti_header_right{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 10vw;
+}
+
+
+.BarraUtenti_ricerca{
+display: flex;
+align-items: center;
+background-color: white;
+height: 40px;
+padding: 10px;
+}
+
+.BarraUtenti_ricerca_contenitore{
+display: flex;
+align-items: center;
+background-color: white;
+height: 5px;
+width: 100%;
+border-radius: 20px;
+
+}
+
+.BarraUtenti_chat{
+    flex: 1;
+    background-color: white;
+    overflow: scroll;
+}
