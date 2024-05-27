@@ -1,0 +1,111 @@
+.chat{
+display: flex;
+flex-direction: column;
+flex: 0.65;
+}
+
+.chat_testa{
+    padding:20px;
+    display:flex;
+    align-items:  center;
+    border-bottom: 1px solid lightgrey;
+
+}
+
+.chat_body{
+flex: 1;
+padding: 30px;
+overflow: scroll rgba(214, 201, 201, 0.555);
+background-image:url(https://th.bing.com/th/id/OIP.GfBwNgGNwckdkJ9F4EFP3AHaNL?w=202&h=328&c=7&r=0&o=5&dpr=1.3&pid=1.7);
+background-repeat: repeat;
+background-position: center;
+background-size: contain;
+}
+
+.chat_casellaTesto{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 62;
+    border-top: 1px solid lightgray;
+}
+
+.chat_name{
+    flex: 1;
+    padding-left: 20px;
+}
+
+.chat_name >h3{
+   margin-bottom:3px ;
+   font-weight: 500;
+}
+
+.chat_name >p{
+   color: gray;
+   font-size: 12px;
+}
+
+
+.chat_icone_lente{
+}
+
+
+
+
+.chat_messaggiInterni{
+   position: relative;
+   font-size: 16px; 
+   padding: 10px;
+   width: fit-content;
+   border-radius: 10px;
+   background-color: white;
+   margin-bottom: 30px;
+}
+
+.chat_nomeInterno{
+    position: absolute;
+    top: -15px;
+    font-weight: 800;
+    font-size: xx-small;
+
+}
+
+.chat_dataInvio{
+margin-left: 10px;
+font-size: xx-small;
+color: grey;
+}
+
+.chat_messRicevuti{
+    margin-left: auto;
+    background-color: aqua;
+}
+
+
+
+.chat_casellaTesto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 62;
+    border-top: 2px solid gray;
+    background-color: lightgray;
+}
+
+.chat_casellaTesto > form {
+flex: 1;
+display: flex;
+}
+
+.chat_casellaTesto > form > input {
+    flex: 1;
+    border-radius: 30px;
+    padding: 10px;
+    border:none;
+    outline-width: 0;
+    }
+
+    .chat_casellaTesto > form > button{
+       border-radius: 20px;
+       background-color:white;
+        }
