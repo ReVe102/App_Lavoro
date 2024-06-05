@@ -40,7 +40,7 @@ db.once("open" , function (){       //prendiamo una connessione quando è open
         if(change.operationType =="insert"){
             const record = change.fullDocument;
             pusher.trigger('messages', 'inserted', {  //creo un canale e un'evento
-                'name' : record.name,
+                'name' : "nameee",
                 'message' : record.message
               });  //trigger che scatena l'evento pusher
 
