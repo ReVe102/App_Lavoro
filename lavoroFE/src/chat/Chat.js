@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Chat.css';
 import { Avatar, IconButton } from '@mui/material';
 import SearchOutlined from '@mui/icons-material/SearchOutlined';
-function Chat(){
+import axios from "../axios";
+
+function Chat({messages}){
+
+    const [input ,setInput] = useState("");
+const sendMessage = async(e) =>{
+    e.preventDefault();
+
+    await axios.post("/api/v1/messages",{
+        message:input ,
+        name:"nomeee",
+        timestamp : "now" ,
+        received : false
+    } ).then();
+    setInput("");
+}
+
     return (
         <div className='chat'>
             <div className='chat_testa'>
@@ -20,30 +36,25 @@ function Chat(){
             </div>
             
             <div className='chat_body'>
-                <p className='chat_messaggiInterni'>
-                    <span className='chat_nomeInterno'>MIO NOME</span>
-                    messaggio
-                    <span className='chat_dataInvio'>{new Date().toUTCString()}</span>
-                </p>
+            { messages.map((message) => {
+                return (
+        <p key={messages._id} className={`chat_messaggiInterni ${message.received && "chat_messRicevuti"}`}>
+            <span className="chat_nomeInterno">{message.name}</span>
+            {message.message}
+            <span className='chat_dataInvio'>{message.timestamp}</span>
+        </p>
+            )
+})}
 
-                <p className='chat_messaggiInterni chat_messRicevuti'>
-                    <span className='chat_nomeInterno'>MIO NOME</span>
-                    messaggio
-                    <span className='chat_dataInvio'>{new Date().toUTCString()}</span>
-                </p>
-
-                <p className='chat_messaggiInterni'>
-                    <span className='chat_nomeInterno'>MIO NOME</span>
-                    messaggio
-                    <span className='chat_dataInvio'>{new Date().toUTCString()}</span>
-                </p>
 
             </div>
             
             <div className='chat_casellaTesto'>
                 <form>
-            <input type='text'placeholder='scrivi un messaggio'></input>
-            <button type='submit'> invia</button>
+            <input  value ={input}
+            onChange={(e) => setInput(e.target.value)}
+             placeholder='scrivi un messaggio'></input>
+            <button onClick={sendMessage} type='submit'> invia</button>
                 </form>
             </div>
 

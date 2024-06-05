@@ -15,11 +15,14 @@ flex: 0.65;
 .chat_body{
 flex: 1;
 padding: 30px;
-overflow: scroll rgba(214, 201, 201, 0.555);
 background-image:url(https://th.bing.com/th/id/OIP.GfBwNgGNwckdkJ9F4EFP3AHaNL?w=202&h=328&c=7&r=0&o=5&dpr=1.3&pid=1.7);
 background-repeat: repeat;
 background-position: center;
 background-size: contain;
+overflow-y: auto; /* Mostra la barra di scorrimento verticale se necessario */
+width: 88.5%; /* Imposta la larghezza al 100% del contenitore padre */
+
+
 }
 
 .chat_casellaTesto{

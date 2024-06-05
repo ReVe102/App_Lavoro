@@ -32,9 +32,7 @@ function BarraUtenti(){
 
             <div className='BarraUtenti_chat'> 
                 <BarraUtentiChat/>
-                <BarraUtentiChat/>
-                <BarraUtentiChat/>
-                <BarraUtentiChat/>
+                
             </div>
 
         </div>
