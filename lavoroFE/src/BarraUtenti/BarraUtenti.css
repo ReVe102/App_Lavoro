@@ -13,11 +13,11 @@
 
 }
 
-.BarraUtenti_Header_left{  
+.BarraUtenti_Header_sinistro{  
     align-items: center;
 }
 
-.BarraUtenti_header_right{
+.BarraUtenti_header_destro{
     display: flex;
     align-items: center;
     justify-content: space-between;

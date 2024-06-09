@@ -6,12 +6,12 @@ border-bottom: 1px solid ;
 }
 
 .BarraUtentiChat:hover{
-background-color: rgba(218, 209, 209, 0.281);
+background-color: white;
     }
 
 .BarraUtenti_info{
     margin-left: 15px;
-    background-color: white ;
+    background-color: white  ;
 }
 
 .BarraUtenti_info >p{  
