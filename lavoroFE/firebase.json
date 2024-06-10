@@ -1,9 +1,10 @@
-const firebaseConfig = {
-    apiKey: "AIzaSyBfd1GecNzsQ177GEaB43WOHtQbtczPPng",
-    authDomain: "progetto-web-5371a.firebaseapp.com",
-    projectId: "progetto-web-5371a",
-    storageBucket: "progetto-web-5371a.appspot.com",
-    messagingSenderId: "396220324486",
-    appId: "1:396220324486:web:7ecd8f57260be396c84f07",
-    measurementId: "G-B51WRPYWHN"
-  };
+{
+  "hosting": {
+    "public": "build",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

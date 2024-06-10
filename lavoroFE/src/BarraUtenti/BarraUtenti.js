@@ -14,21 +14,26 @@ const BarraUtenti= () =>{
                 <IconButton>
                         <Avatar src="https://th.bing.com/th/id/R.236f1726f4661b4abb8475c53ff00546?rik=oiPTfmGkIbVkrA&riu=http%3a%2f%2fwallpapercave.com%2fwp%2fRIH6ewo.jpg&ehk=7BqOKclSqmWRz%2fUM5WPJMQ5BzPPDxtYugbgWKocTOkM%3d&risl=&pid=ImgRaw&r=0" />
                     </IconButton>
-                </div>
+                
                 <div className='BarraUtenti_header_destro'>
                     <IconButton>
                         <EditIcon />
                     </IconButton>
                 </div>
+                </div>
             </div>
             <div className='BarraUtenti_ricerca'>
                 <div className='BarraUtenti_ricerca_contenitore'>
                     <SearchOutlinedIcon />
-                    <input type='text' placeholder='cerca utente' />
+                    <input  placeholder='cerca utente'
+                    type='text' > 
+                    </input>
                 </div>
             </div>
-
-                </div>
+            <div className='BarraUtentiChat'>
+                <BarraUtentiChat></BarraUtentiChat>
+            </div>
+     </div>
         
         
 

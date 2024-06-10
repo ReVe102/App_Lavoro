@@ -58,12 +58,6 @@ width: 88.5%; /* Imposta la larghezza al 100% del contenitore padre */
 }
 
 
-.chat_icone_lente{
-}
-
-
-
-
 .chat_messaggiInterni{
    position: relative;
    font-size: 16px; 
@@ -72,6 +66,13 @@ width: 88.5%; /* Imposta la larghezza al 100% del contenitore padre */
    border-radius: 10px;
    background-color: white;
    margin-bottom: 30px;
+}
+
+
+.chat_timestamp{
+    margin-left: 10px;
+    font-size: xx-small;
+    color: gray;
 }
 
 .chat_nomeInterno{
@@ -89,8 +90,14 @@ color: grey;
 }
 
 .chat_messRicevuti{
-    margin-left: auto;
-    background-color: aqua;
+    position: relative;
+   font-size: 16px; 
+   padding: 10px;
+   width: fit-content;
+   border-radius: 10px;
+   background-color: rgb(73, 241, 250);
+   margin-bottom: 30px;
+   margin-left: auto;
 }
 
 
@@ -101,7 +108,7 @@ color: grey;
     align-items: center;
     height: 62;
     border-top: 2px solid gray;
-    background-color: lightgray;
+    background-color: rgb(231, 226, 226);
 }
 
 .chat_casellaTesto > form {
@@ -118,6 +125,6 @@ display: flex;
     }
 
     .chat_casellaTesto > form > button{
-       border-radius: 20px;
+       border-radius: 10px;
        background-color:white;
         }
