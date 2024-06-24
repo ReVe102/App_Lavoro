@@ -37,9 +37,7 @@ function App() {
     return (
         <div className="app">
             <Router>
-                {!user ? (
-                    <Login />
-                ) : (
+                {!user ? (<Login />) : (
                     <div className="app_body">
                         <BarraUtenti />
                         <Routes>
@@ -49,8 +47,7 @@ function App() {
                                     <div className='infoOgg'>
                                         Seleziona una chat
                                     </div>
-                                </div>
-                            } />
+                                </div>} />
                         </Routes>
                     </div>
                 )}
