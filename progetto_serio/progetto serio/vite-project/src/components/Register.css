@@ -1,0 +1,137 @@
+.primapag{
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin:50px;
+
+    h3{
+        color:grey;
+    }
+}
+.login {
+    font-family: Arial, sans-serif;
+    overflow-y: auto;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.login-container {
+    overflow-y: auto;
+    background-color: #fff;
+    width:400px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.login-container h2 {
+    margin: 15px;
+    text-align: center;
+}
+.login-container {
+    max-height: 90vh; /* Altezza massima del contenitore */
+     /* Abilita lo scorrimento verticale */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 600px; /* Larghezza massima del contenitore */
+    margin: 0 auto; /* Centra il contenitore */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-group input {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    display: block;             /* queste due righe sono fisse */
+    margin:10px auto;
+
+
+}
+.form-group button {
+    display: block;
+    margin: 35px auto;
+
+    width:80%;
+
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+
+}
+.form-group button:hover {
+    background-color: #0056b3;
+}
+
+.registrato{
+    color:lightslategray;
+    font-family: Arial, sans-serif;
+    font-size: small;
+}
+
+.registrato:hover{
+    color:darkslategrey;
+    font-family: Arial, sans-serif;
+    font-size: small;
+}
+
+.registrato:visited{
+    color:black;
+    font-family: Arial, sans-serif;
+    font-size: small;
+}
+
+.scelta button{
+    font-family: Arial, sans-serif;
+    font-size: large;
+    display: inline-block;
+    margin: 20px 35px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    width: 400px;
+    height: 450px;
+    border: none;
+
+
+}
+
+.scelta{
+    text-align: center;
+}
+
+select {
+    width: 40%;
+    display: block;
+
+    padding: 10px;
+    margin-top: 30px;
+    margin-left:auto;
+    margin-right:auto;
+
+
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    background-size: 16px 12px;
+    cursor: pointer;
+  }
