@@ -1,0 +1,20 @@
+.homeContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.sidebar {
+    flex: 1;
+    max-width: 250px; 
+}
+
+.feed {
+    flex: 2; 
+    margin: 0 20px; 
+}
+
+.rightbar {
+    flex: 1;
+    max-width: 250px; 
+}
