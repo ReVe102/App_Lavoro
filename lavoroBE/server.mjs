@@ -3,6 +3,7 @@ import message from "./model/messaggiDB.mjs";
 import mongoose from "mongoose";
 import Pusher from "pusher";
 import cors from "cors";
+import stanze from "./model/dbStanze.mjs";
 
 const pusher = new Pusher({
     appId: "1812335",
@@ -24,6 +25,9 @@ const connectionDBUrl = "mongodb+srv://giuseppemontaruli76:TSkHyRoG5Mn9XZG7@prog
 mongoose.connect(connectionDBUrl, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connessione avvenuta con successo'))
     .catch((err) => console.error(err));
+//fine connessione DB
+
+
 
 // change stream
 const db = mongoose.connection;
@@ -38,9 +42,8 @@ db.once("open", function () {
             pusher.trigger('messages', 'inserted', {
                 'name': record.name,
                 'message': record.message,
-                'userId': record.userId ,
-                'timestamp': record.timestamp ,// Aggiunto campo userId
-                'received' : record.received
+                'timestamp': record.timestamp ,
+                
             });
         } else {
             console.log("nessun pusher");
@@ -49,33 +52,75 @@ db.once("open", function () {
 });
 
 app.get('/api', (req, res) => {
-    res.status(200).send("Benvenuti sul server");
+    res.send("Benvenuti sul server");
 });
+
+
 
 app.get("/api/v1/messages/sync", async (req, res) => {
     try {
-        const { senderId, receiverId } = req.query;
-        const data = await message.find({
-            $or: [
-                { senderId, receiverId },
-                { senderId: receiverId, receiverId: senderId }
-            ]
-        });
+        const data = await message.find(); // Await the result of the find method
         res.status(201).send(data);
     } catch (err) {
         res.status(500).send(err);
     }
 });
 
+
+
 app.post("/api/v1/messages", async (req, res) => {
     const messaggiDB = req.body;
-
     try {
         const data = await message.create(messaggiDB);
         res.status(201).send(data);
     } catch (err) {
         res.status(500).send(err);
     }
+    
 });
+
+
+// creazione stanze
+app.post("/api/v1/stanze", async (req, res) => {
+    const dbStanze = req.body;
+    try {
+        const data = await stanze.create(dbStanze);
+        res.status(201).send(data);
+    } catch (err) {
+        res.status(500).send(err);
+    }
+    
+});
+
+
+app.get("/api/v1/stanze/sync", async (req, res) => {
+    try {
+        const data = await stanze.find(); // Await the result of the find method
+        res.status(201).send(data);
+    } catch (err) {
+        res.status(500).send(err);
+    }
+});
+
+
+
+app.get("/api/v1/stanze/:id", async (req, res) => {
+    const stanzeID =req.params.id;
+    stanze.findById(stanzeID).then((stanze)=>{
+        if(!stanze){
+            res.status(404).json({
+                message :"stanza non strovata"
+            });
+        } 
+            res.status(200).json({stanze : stanze});
+        
+    }).catch((err)=>
+    {
+            res.status(404).json({
+                message: " errore id "
+            })
+ })
+})
+
 
 app.listen(port, () => { console.log(`Server start on port: ${port}`) });

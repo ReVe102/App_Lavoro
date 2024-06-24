@@ -6,7 +6,7 @@
   display:grid;
   place-items: center;
   height: 100vh;
-  background-color: lightblue;
+  background-color: #add8e6;
 }
 
 .app_body{
@@ -28,4 +28,16 @@
   min-width: 10vw;
 }
 
+.infIniziali{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0;
+}
 
+.infoOgg{
+  padding: 5px;
+  
+  
+}
