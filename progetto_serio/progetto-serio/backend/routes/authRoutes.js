@@ -30,4 +30,7 @@ router.get('/posts/images', authController.getImages);
 router.get('/posts/privato/:privatoId', authController.getPostsByPrivatoId); 
 router.get('/posts/azienda/:aziendaId', authController.getPostsByAziendaId);
 
+router.get('/Allmessage', authController.getMessage);
+/* router.get('/Allmessage/message', authController.getPostsByAziendaId);
+ */
 module.exports = router;

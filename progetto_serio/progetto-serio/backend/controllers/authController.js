@@ -1,14 +1,14 @@
 const PrivatoModel = require('../models/PrivatoModel');
 const bcrypt = require('bcrypt');
-const jwt=require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const AziendaModel = require('../models/AziendaModel');
-const PostAziende=require('../models/PostAziende');
-const PostPrivati=require('../models/PostPrivati');
-const mongoose=require('mongoose');
+const PostAziende = require('../models/PostAziende');
+const PostPrivati = require('../models/PostPrivati');
+const mongoose = require('mongoose');
 import express from "express";
 
 //Messages:
-const Usermessage= recuire('../models/messaggiDB');
+const Usermessage = recuire('../models/messaggiDB');
 
 const app = express();
 const port = process.env.PORT || 9000;
@@ -16,74 +16,76 @@ const port = process.env.PORT || 9000;
 app.use(express.json());
 app.use(cors());
 
-exports.register=async (req, res)=>{
-    
-    const{name,email,password,image, datanascita, luogo, biografia, impiego, ultimolavoro, lavoriprecedenti,indirizzosuperiore,corsodilaurea,posizionelavorativaricercata,luogonascita,luogoresidenza,cellulare }=req.body;
-    const status="privato"
+exports.register = async (req, res) => {
 
-    const salt= await bcrypt.genSalt(10);
+    const { name, email, password, image, datanascita, luogo, biografia, impiego, ultimolavoro, lavoriprecedenti, indirizzosuperiore, corsodilaurea, posizionelavorativaricercata, luogonascita, luogoresidenza, cellulare } = req.body;
+    const status = "privato"
+
+    const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    try{
+    try {
         const existingUser = await PrivatoModel.findOne({ email });
 
         if (!email || !password) { //se manca uno dei 2 invia errore
-        return res.json("mancaqualcosa");
-        }else{
-            if(existingUser) {  //se mail gia usata
-            return res.json('esistegia');
-            }else{
+            return res.json("mancaqualcosa");
+        } else {
+            if (existingUser) {  //se mail gia usata
+                return res.json('esistegia');
+            } else {
                 // salva i dati in users
-                const newuser = new PrivatoModel({ name:name, email:email, image:image, password:hashedPassword, luogo:luogo, status:status,
-                                                datanascita:datanascita,biografia:biografia,impiego: impiego, ultimolavoro: ultimolavoro, 
-                                                lavoriprecedenti: lavoriprecedenti, indirizzosuperiore: indirizzosuperiore, corsodilaurea: corsodilaurea, posizionelavorativaricercata: posizionelavorativaricercata, 
-                                                luogonascita: luogonascita, luogoresidenza: luogoresidenza, cellulare: cellulare});
+                const newuser = new PrivatoModel({
+                    name: name, email: email, image: image, password: hashedPassword, luogo: luogo, status: status,
+                    datanascita: datanascita, biografia: biografia, impiego: impiego, ultimolavoro: ultimolavoro,
+                    lavoriprecedenti: lavoriprecedenti, indirizzosuperiore: indirizzosuperiore, corsodilaurea: corsodilaurea, posizionelavorativaricercata: posizionelavorativaricercata,
+                    luogonascita: luogonascita, luogoresidenza: luogoresidenza, cellulare: cellulare
+                });
 
                 await newuser.save()
-                res.send({status:"ok"})
+                res.send({ status: "ok" })
 
             }
-    
+
 
         }
-    }catch(error){
-        res.send({status:"error"})
+    } catch (error) {
+        res.send({ status: "error" })
     }
-    
-    
+
+
 }
 
-exports.registerAzienda=async (req, res)=>{
-    
-    const{name, email, password, image, descrizione, datanascita, cienteladiriferimento, numerodipendenti, fatturatoannuale, mercati, settore, fondatori, ceo, strutturasocietaria, certificazioni, premi, luogonascita, sedelegale, sedioperative, telefono, sitoweb}=req.body;
-    const status="azienda"
-    const salt= await bcrypt.genSalt(10);
+exports.registerAzienda = async (req, res) => {
+
+    const { name, email, password, image, descrizione, datanascita, cienteladiriferimento, numerodipendenti, fatturatoannuale, mercati, settore, fondatori, ceo, strutturasocietaria, certificazioni, premi, luogonascita, sedelegale, sedioperative, telefono, sitoweb } = req.body;
+    const status = "azienda"
+    const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    try{
+    try {
         const existingUser = await AziendaModel.findOne({ email });
 
         if (!email || !password) { //se manca uno dei 2 invia errore
-        return res.json("mancaqualcosa");
-        }else{
-            if(existingUser) {  //se mail gia usata
-            return res.json('esistegia');
-            }else{
+            return res.json("mancaqualcosa");
+        } else {
+            if (existingUser) {  //se mail gia usata
+                return res.json('esistegia');
+            } else {
                 // salva i dati in users
-                const newuser = new AziendaModel({ name:name, email:email, image:image, password:hashedPassword, descrizione:descrizione, status:status, datanascita:datanascita, cienteladiriferimento:cienteladiriferimento, numerodipendenti:numerodipendenti, fatturatoannuale:fatturatoannuale, mercati:mercati, settore:settore, fondatori:fondatori, ceo:ceo, strutturasocietaria:strutturasocietaria, certificazioni:certificazioni, premi:premi, luogonascita:luogonascita, sedelegale:sedelegale, sedioperative:sedioperative, telefono:telefono, sitoweb:sitoweb});
+                const newuser = new AziendaModel({ name: name, email: email, image: image, password: hashedPassword, descrizione: descrizione, status: status, datanascita: datanascita, cienteladiriferimento: cienteladiriferimento, numerodipendenti: numerodipendenti, fatturatoannuale: fatturatoannuale, mercati: mercati, settore: settore, fondatori: fondatori, ceo: ceo, strutturasocietaria: strutturasocietaria, certificazioni: certificazioni, premi: premi, luogonascita: luogonascita, sedelegale: sedelegale, sedioperative: sedioperative, telefono: telefono, sitoweb: sitoweb });
 
                 await newuser.save()
-                res.send({status:"ok"})
+                res.send({ status: "ok" })
 
             }
-    
+
 
         }
-    }catch(error){
-        res.send({status:"error"})
+    } catch (error) {
+        res.send({ status: "error" })
     }
-    
-    
+
+
 }
 
 exports.login = async (req, res) => {
@@ -125,48 +127,48 @@ exports.login = async (req, res) => {
     }
 };
 
-exports.profilo=async(req, res)=>{
-    const {token}=req.body;
-    try{
-        const user=jwt.verify(token, process.env.JWT_SECRET, (err, res)=>{
-            if(err){
+exports.profilo = async (req, res) => {
+    const { token } = req.body;
+    try {
+        const user = jwt.verify(token, process.env.JWT_SECRET, (err, res) => {
+            if (err) {
                 return "token expired"
             }
             return res
         })
-        if(user=="token expired"){
-            return res.send({status:"error", data:"token expired"})
+        if (user == "token expired") {
+            return res.send({ status: "error", data: "token expired" })
         }
-        const useremail=user.email;
-        const userstatus=user.status;
-        if(userstatus=="privato"){
-            PrivatoModel.findOne({email:useremail})
-            .then((data)=>{
-                res.send({status:"ok", data:data})
-            }).catch((error)=>{
-                res.send({status:"error", data:error})
-            })
+        const useremail = user.email;
+        const userstatus = user.status;
+        if (userstatus == "privato") {
+            PrivatoModel.findOne({ email: useremail })
+                .then((data) => {
+                    res.send({ status: "ok", data: data })
+                }).catch((error) => {
+                    res.send({ status: "error", data: error })
+                })
 
-        }else{
-            AziendaModel.findOne({email:useremail})
-            .then((data)=>{
-                res.send({status:"ok", data:data})
-            }).catch((error)=>{
-                res.send({status:"error", data:error})
-            })
+        } else {
+            AziendaModel.findOne({ email: useremail })
+                .then((data) => {
+                    res.send({ status: "ok", data: data })
+                }).catch((error) => {
+                    res.send({ status: "error", data: error })
+                })
         }
-       
-    }catch(error){}
+
+    } catch (error) { }
 }
 
-exports.updateUser=async (req, res)=>{
-    const{name,email, luogo, profilo, biografia, image, impiego, ultimolavoro, lavoriprecedenti,indirizzosuperiore,corsodilaurea,posizionelavorativaricercata,luogonascita,luogoresidenza,cellulare}=req.body;
-    const{ status,descrizione, datanascita, cienteladiriferimento, numerodipendenti, fatturatoannuale, mercati, settore, fondatori, ceo, strutturasocietaria, certificazioni, premi, sedelegale, sedioperative, telefono, sitoweb}=req.body;
+exports.updateUser = async (req, res) => {
+    const { name, email, luogo, profilo, biografia, image, impiego, ultimolavoro, lavoriprecedenti, indirizzosuperiore, corsodilaurea, posizionelavorativaricercata, luogonascita, luogoresidenza, cellulare } = req.body;
+    const { status, descrizione, datanascita, cienteladiriferimento, numerodipendenti, fatturatoannuale, mercati, settore, fondatori, ceo, strutturasocietaria, certificazioni, premi, sedelegale, sedioperative, telefono, sitoweb } = req.body;
 
-    try{
-        if(status==="azienda"){
-            await AziendaModel.updateOne({email:email},{
-                $set:{
+    try {
+        if (status === "azienda") {
+            await AziendaModel.updateOne({ email: email }, {
+                $set: {
                     name: name,
                     image: image,
                     descrizione: descrizione,
@@ -187,64 +189,65 @@ exports.updateUser=async (req, res)=>{
                     sedioperative: sedioperative,
                     telefono: telefono,
                     sitoweb: sitoweb
-                }})
-            }else{
-                await PrivatoModel.updateOne({email:email},{
-                    $set:{
-                        name:name,
-                        luogo: luogo,
-                        profilo: profilo,
-                        biografia: biografia,
-                        impiego: impiego,
-                        ultimolavoro: ultimolavoro,
-                        lavoriprecedenti: lavoriprecedenti,
-                        indirizzosuperiore: indirizzosuperiore,
-                        corsodilaurea: corsodilaurea,
-                        posizionelavorativaricercata: posizionelavorativaricercata,
-                        luogonascita: luogonascita,
-                        luogoresidenza: luogoresidenza,
-                        cellulare: cellulare,
-                        image:image,
-                        status:status
-                    }
+                }
+            })
+        } else {
+            await PrivatoModel.updateOne({ email: email }, {
+                $set: {
+                    name: name,
+                    luogo: luogo,
+                    profilo: profilo,
+                    biografia: biografia,
+                    impiego: impiego,
+                    ultimolavoro: ultimolavoro,
+                    lavoriprecedenti: lavoriprecedenti,
+                    indirizzosuperiore: indirizzosuperiore,
+                    corsodilaurea: corsodilaurea,
+                    posizionelavorativaricercata: posizionelavorativaricercata,
+                    luogonascita: luogonascita,
+                    luogoresidenza: luogoresidenza,
+                    cellulare: cellulare,
+                    image: image,
+                    status: status
+                }
 
             })
         }
 
-        
 
 
 
 
-    return res.json({status:"ok", data:"updated"})
 
-    }catch(error){
-        return res.json({status:"error", data:"error"})
+        return res.json({ status: "ok", data: "updated" })
 
-    }
-}
-
-
-exports.uploadImmage=async(req,res)=>{
-    const {image}=req.body;
-    try{
-        Images.create({image:image});
-
-        res.send({Status:"ok"})
-
-    }catch(error){
-        res.send({Status:"error", data:error})
+    } catch (error) {
+        return res.json({ status: "error", data: "error" })
 
     }
 }
 
-exports.getImmage=async(req,res)=>{
-    try{
-        await Images.find({}).then(data=>{
-            res.send({status:"ok", data:data})
+
+exports.uploadImmage = async (req, res) => {
+    const { image } = req.body;
+    try {
+        Images.create({ image: image });
+
+        res.send({ Status: "ok" })
+
+    } catch (error) {
+        res.send({ Status: "error", data: error })
+
+    }
+}
+
+exports.getImmage = async (req, res) => {
+    try {
+        await Images.find({}).then(data => {
+            res.send({ status: "ok", data: data })
 
         })
-    }catch(error){
+    } catch (error) {
     }
 }
 
@@ -401,9 +404,9 @@ exports.getPostsByProfile = async (req, res) => {
 
         let posts;
         if (user.status === 'privato') {
-            posts = await PostPrivati.find({ privatoId: userId});
+            posts = await PostPrivati.find({ privatoId: userId });
         } else if (user.status === 'azienda') {
-            posts = await PostAziende.find({ aziendaId: userId});
+            posts = await PostAziende.find({ aziendaId: userId });
         }
         console.log('Posts trovati:', posts);
         res.status(200).json(posts);
@@ -417,7 +420,7 @@ exports.getPostsByProfile = async (req, res) => {
 exports.uploadImage = async (req, res) => {
     const { base64 } = req.body;
     try {
-        const imageUrl = base64; 
+        const imageUrl = base64;
         res.status(200).json({ Status: "ok", imageUrl });
     } catch (error) {
         res.status(500).json({ Status: "error", error: error.message });
@@ -480,7 +483,7 @@ exports.getPrivatoById = async (req, res) => {
         if (!privato) {
             return res.status(404).json({ message: 'Privato non trovato' });
         }
-        console.log('Privato trovato:', privato); 
+        console.log('Privato trovato:', privato);
         res.json(privato);
     } catch (err) {
         res.status(500).json({ message: 'Errore del server' });
@@ -512,7 +515,7 @@ exports.getAziendaById = async (req, res) => {
         if (!azienda) {
             return res.status(404).json({ message: 'Azienda non trovata' });
         }
-        console.log('Azienda trovata:', azienda); 
+        console.log('Azienda trovata:', azienda);
         res.json(azienda);
     } catch (err) {
         res.status(500).json({ message: 'Errore del server' });
@@ -576,19 +579,15 @@ exports.getPostsByAziendaId = async (req, res) => {
         res.status(500).json({ message: 'Errore del server' });
     }
 };
-
-app.get("/api/v1/messages/sync", async (req, res) => {
+exports.getMessage = async (req, res) => {
     try {
-        const data = await message.find(); // Await the result of the find method
+        const data = await res.find(); // Await the result of the find method
         res.status(201).send(data);
     } catch (err) {
         res.status(500).send(err);
     }
-});
-
-
-
-app.post("/api/v1/messages", async (req, res) => {
+}
+exports.postMessage = async (req, res) => {
     const messaggiDB = req.body;
     try {
         const data = await message.create(messaggiDB);
@@ -596,5 +595,4 @@ app.post("/api/v1/messages", async (req, res) => {
     } catch (err) {
         res.status(500).send(err);
     }
-    
-});
+}

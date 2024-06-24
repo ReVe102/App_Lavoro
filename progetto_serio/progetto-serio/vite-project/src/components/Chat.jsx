@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 function Chat({ message }) {
-    
+
     /*  
         const { stanzeID } = useParams();
         const [NomeStanza, setNomeStanza] = useState("");
@@ -21,6 +21,22 @@ function Chat({ message }) {
          });
  
      }; */
+    const [currentUser, setCurrentUser] = useState(null);
+
+    useEffect(() => {
+        const fetchCurrentUser = async () => {
+            try {
+                const res = await axios.post("http://localhost:3000/userData", {
+                    token: window.localStorage.getItem("token")
+                });
+                setCurrentUser(res.data.data);
+            } catch (err) {
+                console.error("Errore nel recuperare i dati dell'utente", err);
+            }
+        };
+
+        fetchCurrentUser();
+    }, []);
     const [messageContent, setMessage] = useState({
         message: '',
         name: '',
@@ -39,7 +55,7 @@ function Chat({ message }) {
         }
     }, [stanzeID]) */
 
-    /* const sendMessage = async (e) => {
+    const sendMessage = async (e) => {
         e.preventDefault();
         const body = {
             message: input,
@@ -47,9 +63,10 @@ function Chat({ message }) {
             timestamp: new Date(),
             received: true
         }
+
         await axios.post("/api/v1/messages", body).then().catch();
         setInput("")
-    } */
+    }
     return (
         <div className='chat'>
             <div className='chat_testa'>
