@@ -34,7 +34,7 @@ const Register = () => {
         sedioperative: "",
         telefono: "",
         sitoweb: "",
-        status:"",
+        status: "",
     });
 
     const [userType, setUserType] = useState("privato"); // Stato per gestire la selezione tra Azienda e Privato
@@ -59,8 +59,8 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-        if(userType=="privato"){
+
+        if (userType == "privato") {
             fetch("http://localhost:3000/register", {
                 method: "POST",
                 crossDomain: true,
@@ -78,7 +78,7 @@ const Register = () => {
                     console.log(data, "userRegister");
                     navigate("/login");
                 });
-        }else{
+        } else {
             fetch("http://localhost:3000/registerAzienda", {
                 method: "POST",
                 crossDomain: true,
@@ -97,7 +97,7 @@ const Register = () => {
                     navigate("/login");
                 });
         }
-        
+
     };
 
     const handleChange = (e) => {
@@ -117,7 +117,7 @@ const Register = () => {
             <div className="login-container">
                 <h2>Registrati come {userType}</h2>
                 <div className="form-group">
-                    
+
                     <div className="user-type-selection">
                         <button type="button" onClick={() => handleUserTypeChange("privato")}>
                             Privato
@@ -129,25 +129,25 @@ const Register = () => {
 
 
                     <form onSubmit={handleSubmit} method="post">
-                        <input 
+                        <input
                             type="text"
                             id="nome"
                             name="name"
                             required
                             onChange={handleChange}
-                            placeholder="Nome completo" 
+                            placeholder="Nome completo"
                         />
 
                         <input
                             type="text"
-                            id="email" 
+                            id="email"
                             name="email"
                             onChange={handleChange}
                             required
                             placeholder="E-mail"
                         />
 
-                        <input 
+                        <input
                             type="password"
                             id="password"
                             name="password"

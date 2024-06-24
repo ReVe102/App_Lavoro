@@ -1,10 +1,20 @@
 const PrivatoModel = require('../models/PrivatoModel');
 const bcrypt = require('bcrypt');
-const jwt=require('jsonwebtoken')
+const jwt=require('jsonwebtoken');
 const AziendaModel = require('../models/AziendaModel');
-const PostAziende=require('../models/PostAziende')
-const PostPrivati=require('../models/PostPrivati')
+const PostAziende=require('../models/PostAziende');
+const PostPrivati=require('../models/PostPrivati');
 const mongoose=require('mongoose');
+import express from "express";
+
+//Messages:
+const Usermessage= recuire('../models/messaggiDB');
+
+const app = express();
+const port = process.env.PORT || 9000;
+
+app.use(express.json());
+app.use(cors());
 
 exports.register=async (req, res)=>{
     
@@ -566,3 +576,25 @@ exports.getPostsByAziendaId = async (req, res) => {
         res.status(500).json({ message: 'Errore del server' });
     }
 };
+
+app.get("/api/v1/messages/sync", async (req, res) => {
+    try {
+        const data = await message.find(); // Await the result of the find method
+        res.status(201).send(data);
+    } catch (err) {
+        res.status(500).send(err);
+    }
+});
+
+
+
+app.post("/api/v1/messages", async (req, res) => {
+    const messaggiDB = req.body;
+    try {
+        const data = await message.create(messaggiDB);
+        res.status(201).send(data);
+    } catch (err) {
+        res.status(500).send(err);
+    }
+    
+});
