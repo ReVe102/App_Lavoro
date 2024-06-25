@@ -31,7 +31,7 @@ function App() {
           <Route path="/updateUser" element ={<UpdateUser/>} />
           <Route path="/feedAziende" element={<HomeComp/>} />
           <Route path="/feedPrivati" element={<HomeEmp/>} />
-          <Route path="/chat" element={<Chat />} />
+          <Route path="/Chat" element={<Chat />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -115,39 +115,54 @@ exports.login = async (req, res) => {
     }
 };
 
-exports.profilo=async(req, res)=>{
-    const {token}=req.body;
-    try{
-        const user=jwt.verify(token, process.env.JWT_SECRET, (err, res)=>{
-            if(err){
-                return "token expired"
-            }
-            return res
-        })
-        if(user=="token expired"){
-            return res.send({status:"error", data:"token expired"})
-        }
-        const useremail=user.email;
-        const userstatus=user.status;
-        if(userstatus=="privato"){
-            PrivatoModel.findOne({email:useremail})
-            .then((data)=>{
-                res.send({status:"ok", data:data})
-            }).catch((error)=>{
-                res.send({status:"error", data:error})
-            })
+exports.profilo = async (req, res) => {
+    const { token } = req.body;
 
-        }else{
-            AziendaModel.findOne({email:useremail})
-            .then((data)=>{
-                res.send({status:"ok", data:data})
-            }).catch((error)=>{
-                res.send({status:"error", data:error})
-            })
+    try {
+        const user = jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+            if (err) {
+                return "token expired";
+            }
+            return decoded;
+        });
+
+        if (user === "token expired") {
+            return res.status(401).send({ status: "error", data: "token expired" });
         }
-       
-    }catch(error){}
-}
+
+        const useremail = user.email;
+        const userstatus = user.status;
+
+        if (userstatus === "privato") {
+            PrivatoModel.findOne({ email: useremail })
+                .then((data) => {
+                    if (!data) {
+                        return res.status(404).send({ status: "error", data: "User not found" });
+                    }
+                    res.send({ status: "ok", data: data });
+                })
+                .catch((error) => {
+                    console.error('Error fetching private user:', error);
+                    res.status(500).send({ status: "error", data: "Internal server error" });
+                });
+        } else {
+            AziendaModel.findOne({ email: useremail })
+                .then((data) => {
+                    if (!data) {
+                        return res.status(404).send({ status: "error", data: "User not found" });
+                    }
+                    res.send({ status: "ok", data: data });
+                })
+                .catch((error) => {
+                    console.error('Error fetching company user:', error);
+                    res.status(500).send({ status: "error", data: "Internal server error" });
+                });
+        }
+    } catch (error) {
+        console.error('Error in profilo function:', error);
+        res.status(500).send({ status: "error", data: "Internal server error" });
+    }
+};
 
 exports.updateUser=async (req, res)=>{
     const{name,email, luogo, profilo, biografia, image, impiego, ultimolavoro, lavoriprecedenti,indirizzosuperiore,corsodilaurea,posizionelavorativaricercata,luogonascita,luogoresidenza,cellulare}=req.body;
@@ -241,7 +256,21 @@ exports.getImmage=async(req,res)=>{
 // Like/Dislike a Post
 exports.likePost = async (req, res) => {
     try {
-        const { postId, postType, userId } = req.body;
+        const { postId, postType } = req.body;
+        const token = req.header('Authorization').replace('Bearer ', '');
+        
+        if (!token) {
+            return res.status(401).json({ error: 'Access denied. No token provided.' });
+        }
+
+        let userId;
+        try {
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            userId = decoded._id;
+        } catch (ex) {
+            return res.status(400).json({ error: 'Invalid token.' });
+        }
+
         const PostModel = postType === 'user' ? PostPrivati : PostAziende;
         const post = await PostModel.findById(postId);
 
@@ -539,13 +568,87 @@ exports.getImages = async (req, res) => {
     }
 };
 
-// logica per ottenere i post di un privato dato il loro ID
+// Funzione per ottenere i post di un privato dato il loro ID
 exports.getPostsByPrivatoId = async (req, res) => {
     try {
         const privatoId = req.params.privatoId;
         console.log(`Fetching posts for privatoId: ${privatoId}`);
-        const posts = await PostPrivati.find({ privatoId: privatoId });
+        
+        if (!mongoose.Types.ObjectId.isValid(privatoId)) {
+            console.log('Invalid privatoId');
+            return res.status(400).json({ message: 'ID non valido' });
+        }
+
+        let posts = [];
+        const fetchedPosts = await PostPrivati.find({ privatoId: privatoId });
+        console.log(`Posts fetched for privatoId ${privatoId}:`, fetchedPosts);
+
+        if (!fetchedPosts || fetchedPosts.length === 0) {
+            console.log('No posts found.');
+            return res.status(404).json({ message: 'Nessun post trovato' });
+        }
+
+        posts = fetchedPosts;
+        res.status(200).json(posts);
+    } catch (err) {
+        console.error(`Errore nel recuperare i post per privatoId ${privatoId}:`, err);
+        res.status(500).json({ message: 'Errore del server' });
+    }
+};
+
+// Funzione per ottenere i post di un'azienda dato il loro ID
+exports.getPostsByAziendaId = async (req, res) => {
+    try {
+        const aziendaId = req.params.aziendaId;
+        console.log(`Fetching posts for aziendaId: ${aziendaId}`);
+        
+        if (!mongoose.Types.ObjectId.isValid(aziendaId)) {
+            console.log('Invalid aziendaId');
+            return res.status(400).json({ message: 'ID non valido' });
+        }
+
+        let posts = [];
+        const fetchedPosts = await PostAziende.find({ aziendaId: aziendaId });
+        console.log(`Posts fetched for aziendaId ${aziendaId}:`, fetchedPosts);
+
+        if (!fetchedPosts || fetchedPosts.length === 0) {
+            console.log('No posts found.');
+            return res.status(404).json({ message: 'Nessun post trovato' });
+        }
+
+        posts = fetchedPosts;
+        res.status(200).json(posts);
+    } catch (err) {
+        console.error(`Errore nel recuperare i post per aziendaId ${aziendaId}:`, err);
+        res.status(500).json({ message: 'Errore del server' });
+    }
+};
+
+/*exports.getPostsByPrivatoId = async (req, res) => {
+    try {
+        const privatoId = req.params.privatoId;
+        console.log(`Fetching posts for privatoId: ${privatoId}`);
+
+        if (!mongoose.Types.ObjectId.isValid(privatoId)) {
+            return res.status(400).json({ message: 'ID non valido' });
+        }
+
+        const posts = await PostPrivati.aggregate([
+            {
+                $match: { privatoId: mongoose.Types.ObjectId(privatoId) }
+            },
+            {
+                $sort: { createdAt: -1 } // Ordina per data di creazione (decrescente)
+            }
+        ]);
+
         console.log(`Posts fetched for privatoId ${privatoId}:`, posts);
+
+        if (!posts || posts.length === 0) {
+            console.log('No posts found.');
+            return res.status(404).json({ message: 'Nessun post trovato' });
+        }
+
         res.json(posts);
     } catch (err) {
         console.error(`Errore nel recuperare i post per privatoId ${privatoId}:`, err);
@@ -553,16 +656,35 @@ exports.getPostsByPrivatoId = async (req, res) => {
     }
 };
 
-// logica per ottenere i post di un'azienda dato il loro ID
 exports.getPostsByAziendaId = async (req, res) => {
     try {
         const aziendaId = req.params.aziendaId;
         console.log(`Fetching posts for aziendaId: ${aziendaId}`);
-        const posts = await PostAziende.find({ aziendaId: aziendaId });
+
+        if (!mongoose.Types.ObjectId.isValid(aziendaId)) {
+            return res.status(400).json({ message: 'ID non valido' });
+        }
+
+        const posts = await PostAziende.aggregate([
+            {
+                $match: { aziendaId: mongoose.Types.ObjectId(aziendaId) }
+            },
+            {
+                $sort: { createdAt: -1 } // Ordina per data di creazione (decrescente)
+            }
+        ]);
+
         console.log(`Posts fetched for aziendaId ${aziendaId}:`, posts);
+
+        if (!posts || posts.length === 0) {
+            console.log('No posts found.');
+            return res.status(404).json({ message: 'Nessun post trovato' });
+        }
+
         res.json(posts);
     } catch (err) {
         console.error(`Errore nel recuperare i post per aziendaId ${aziendaId}:`, err);
         res.status(500).json({ message: 'Errore del server' });
     }
-};
+};*/
+

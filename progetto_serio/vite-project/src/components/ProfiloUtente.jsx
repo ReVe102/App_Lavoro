@@ -4,6 +4,7 @@ import axios from 'axios';
 import Post from './post/Post';
 import './Profilo.css';
 
+
 const ProfiloUtente = () => {
     const { privatoId, aziendaId } = useParams();
     const [userOrAzienda, setUserOrAzienda] = useState({});
@@ -19,10 +20,14 @@ const ProfiloUtente = () => {
 
                 if (privatoId) {
                     userResponse = await axios.get(`http://localhost:3000/privati/${privatoId}`);
+                    console.log(`User response for privatoId ${privatoId}:`, userResponse.data);
                     postsResponse = await axios.get(`http://localhost:3000/posts/privato/${privatoId}`);
+                    console.log(`Posts response for privatoId ${privatoId}:`, postsResponse.data);
                 } else if (aziendaId) {
                     userResponse = await axios.get(`http://localhost:3000/aziende/${aziendaId}`);
+                    console.log(`User response for aziendaId ${aziendaId}:`, userResponse.data);
                     postsResponse = await axios.get(`http://localhost:3000/posts/azienda/${aziendaId}`);
+                    console.log(`Posts response for aziendaId ${aziendaId}:`, postsResponse.data);
                 }
 
                 if (userResponse) {
@@ -30,9 +35,11 @@ const ProfiloUtente = () => {
                     console.log('User or Azienda Data:', userResponse.data);
                 }
 
-                if (postsResponse) {
+                if (postsResponse && postsResponse.data) {
                     setPosts(postsResponse.data);
                     console.log('Posts Data:', postsResponse.data);
+                } else {
+                    console.log('Nessun post trovato.');
                 }
 
                 setLoading(false);
@@ -181,8 +188,10 @@ const ProfiloUtente = () => {
                     <br />
                 </div>
                 <Link to="/chat">
-                    <button className="chatButton">Chat</button>
+                    <button className="chatButton">Sono interessato</button>
                 </Link>
+
+                //bottone che mi serve
             </div>
             <div className="footer">
                 <div className="leftbar">
@@ -199,13 +208,9 @@ const ProfiloUtente = () => {
             </div>
             <div className="mainbar">
                 <div className="posts">
-                    {Array.isArray(posts) && posts.length > 0 ? (
-                        posts.map((post) => (
-                            <Post key={post._id} post={post} />
-                        ))
-                    ) : (
-                        <p>Nessun post disponibile.</p>
-                    )}
+                {posts.map((post) => (
+                        <Post key={post._id} post={post} />
+                    ))}
                 </div>
             </div>
         </div>
