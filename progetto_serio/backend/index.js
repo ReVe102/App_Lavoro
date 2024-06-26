@@ -40,7 +40,7 @@ const connessioneDb = async () => {
         await mongoose.connect(process.env.DBURI);
         console.log("Connessione al DB riuscitaaaaaaaa");
     } catch (err) {
-        console.log("Errore nella connessione al DB");
+        console.log("Erroree nella connessione al DB");
     }
 };
 
