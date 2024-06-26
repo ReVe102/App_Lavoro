@@ -32,7 +32,7 @@ io.on('connection', (socket) => {
 
     socket.on('interested', (data) => {
         const { senderName, senderId, receiverId } = data;
-        io.emit('notification', { message: `L'utente ${senderName} è interessato alla vostra azienda` });
+        io.emit('notification', { message: `L'utente ${senderName} è interessato/a alla vostra azienda` });
     });
 });
 
