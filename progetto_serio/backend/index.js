@@ -31,7 +31,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('interested', (data) => {
-        io.emit('notification', { message: `L'utente è interessato all'azienda` });
+        io.emit('notification', { message: `L'utente ${data.privatoId}è interessato all'azienda`,data });
     });
 });
 
