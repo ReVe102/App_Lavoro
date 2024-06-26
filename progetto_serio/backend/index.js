@@ -31,7 +31,8 @@ io.on('connection', (socket) => {
     });
 
     socket.on('interested', (data) => {
-        io.emit('notification', { message: `L'utente ${data.privatoId}è interessato all'azienda`,data });
+        const { senderName, senderId, receiverId } = data;
+        io.emit('notification', { message: `L'utente ${senderName} è interessato/a alla vostra azienda` });
     });
 });
 
@@ -43,8 +44,8 @@ const connessioneDb = async () => {
         console.log("Erroree nella connessione al DB");
     }
 };
-//modifica
+
 server.listen(3000, () => {
-    console.log("Server in esecuzioooone"); //provs
+    console.log("Server in esecuzioooone");
     connessioneDb();
 });

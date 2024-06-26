@@ -47,9 +47,13 @@ const ProfiloUtente = () => {
     }, [privatoId, aziendaId]);
 
     const handleInterestedClick = () => {
+        const loggedUser = JSON.parse(localStorage.getItem('userData'));
         const data = {
             privatoId,
             aziendaId,
+            senderName: loggedUser.name, // Usa il nome dell'utente autenticato
+            senderId: privatoId || aziendaId,
+            receiverId: aziendaId || privatoId
         };
         socket.emit('interested', data);
     };
