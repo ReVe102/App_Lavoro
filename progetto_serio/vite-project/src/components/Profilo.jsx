@@ -34,6 +34,7 @@ const Profilo = () => {
           navigate('/Login');
         } else {
           setUserData(userDataResponse.data.data);
+          window.localStorage.setItem('userData', JSON.stringify(userDataResponse.data.data));  // Salva i dati dell'utente nel localStorage
 
           const postsResponse = await axios.get('http://localhost:3000/posts/profilo', {
             headers: {

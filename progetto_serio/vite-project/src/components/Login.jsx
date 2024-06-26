@@ -10,14 +10,13 @@ export default function Login() {
   const [status, setStatus] = useState("privato")
   const navigate = useNavigate();
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(email, password);
 
     fetch("http://localhost:3000/login", {
       method: "POST",
-      crossDomain: true,                                ///////rivedi perche appena cambiato tutto 
+      crossDomain: true,
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -36,7 +35,22 @@ export default function Login() {
           window.localStorage.setItem("token", data.data);
           window.localStorage.setItem("loggedIn", true);
 
-          navigate("/Profilo")
+          // Recupera i dati dell'utente e salvali nel localStorage
+          fetch("http://localhost:3000/userData", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+            body: JSON.stringify({
+              token: data.data
+            }),
+          }).then((res) => res.json())
+            .then((userData) => {
+              window.localStorage.setItem("userData", JSON.stringify(userData.data));
+              navigate("/Profilo");
+            });
         } else {
           alert(data.status);
         }
