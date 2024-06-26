@@ -154,20 +154,6 @@ ul li{
     border-radius: 5px;
 }
 
-.chatButton {
-    background-color: blue;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
 .button-group {
     display: flex;
     justify-content: flex-end;
@@ -175,3 +161,4 @@ ul li{
     gap: 10px;
     margin-right: 20px;
 }
+

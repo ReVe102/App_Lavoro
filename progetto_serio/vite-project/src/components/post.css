@@ -1,4 +1,5 @@
 .post{
+    position: relative;
     width: 100%;
     border-radius: 10px;
     box-shadow: 0px 2px 83px -56px rgba(0,0,0,1);
@@ -9,6 +10,7 @@ margin: 30px 0;
 
 .postWrapper{
     padding: 10px;
+    position: relative;
 }
 
 .postTop{
@@ -112,4 +114,28 @@ margin: 30px 0;
 
 .navbarButton:hover {
     background-color: #c82333;
+}
+
+.postTopRight{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center
+}
+
+.DeleteIcon{
+    color:dimgrey;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.postTopRight button{
+    background-color:beige;
+    border:none;
+    color: #333;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
 }

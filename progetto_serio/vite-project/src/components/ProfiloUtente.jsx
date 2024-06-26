@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import io from 'socket.io-client';
 import axios from 'axios';
 import Post from './post/Post';
@@ -192,6 +192,10 @@ const ProfiloUtente = () => {
                 <div className="nomeutente">
                     <h1>{userOrAzienda.name} {userOrAzienda.status}</h1>
                     <br />
+                </div>
+                <div className="button-group">
+                    <Link to="/feedAziende" className="navbarLink">Feed aziende</Link>
+                    <Link to="/feedPrivati" className="navbarLink">Feed privati</Link>
                 </div>
                 <button className="chatButton" onClick={handleInterestedClick}>
                     Sono interessato
