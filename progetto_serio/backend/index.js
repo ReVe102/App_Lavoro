@@ -38,7 +38,7 @@ io.on('connection', (socket) => {
 const connessioneDb = async () => {
     try {
         await mongoose.connect(process.env.DBURI);
-        console.log("Connessione al DB riuscita");
+        console.log("Connessione al DB riuscitaaaaaaaa");
     } catch (err) {
         console.log("Errore nella connessione al DB");
     }
