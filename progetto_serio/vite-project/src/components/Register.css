@@ -1,16 +1,8 @@
-.primapag{
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin:50px;
 
-    h3{
-        color:grey;
-    }
-}
 .login {
     font-family: Arial, sans-serif;
     overflow-y: auto;
-    background-color: #f4f4f4;
+    background: linear-gradient(#0F3443,#34E89E);
     margin: 0;
     padding: 0;
     display: flex;
@@ -23,7 +15,7 @@
     background-color: #fff;
     width:400px;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 12px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 .login-container h2 {
@@ -35,7 +27,7 @@
      /* Abilita lo scorrimento verticale */
     padding: 20px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 18px;
     max-width: 600px; /* Larghezza massima del contenitore */
     margin: 0 auto; /* Centra il contenitore */
 }
@@ -44,59 +36,75 @@
     display: flex;
     flex-direction: column;
 }
-
-input {
-    margin-bottom: 10px;
-    padding: 10px;
-    font-size: 16px;
+.inputs{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
 }
-
-.form-group input {
+.input {
+    display: flex;
+    align-items: center;
+    margin:auto;
     width: 80%;
+    height:30px;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-
-    display: block;             /* queste due righe sono fisse */
-    margin:10px auto;
-
+    border: none;
+    border-radius: 8px;
+    background: #eaeaea;
 
 }
+
+.input img{
+    margin: 0 10px;
+    height: 50%;
+}
+
+.input input{
+    height: 50px;
+    width: 80%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #797979
+}
+
+
 .form-group button {
     display: block;
-    margin: 35px auto;
+    margin: 30px auto;
 
     width:80%;
 
     padding: 10px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: #198e5d;
+
+    font-size: medium;
+    color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
 
 
 }
 .form-group button:hover {
-    background-color: #0056b3;
+    background-color: #0f583a;
 }
 
-.registrato{
-    color:lightslategray;
-    font-family: Arial, sans-serif;
-    font-size: small;
+.domanda{
+    padding-left: 60px;
+    margin-top: 0px;
+    color:#797979;
+    font-size: 14px;
+    cursor:pointer;
 }
 
-.registrato:hover{
-    color:darkslategrey;
-    font-family: Arial, sans-serif;
-    font-size: small;
+a{
+    color: #269667;
+    text-decoration: none;
 }
-
-.registrato:visited{
-    color:black;
-    font-family: Arial, sans-serif;
-    font-size: small;
+a:hover{
+    color:#797979;
+    
 }
 
 .scelta button{
@@ -129,9 +137,21 @@ select {
     margin-right:auto;
 
 
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 2px solid #169761;
+    border-radius: 8px;
     background-color: white;
     background-size: 16px 12px;
     cursor: pointer;
   }
+
+
+select:focus{
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    border: 2px solid #169761;
+
+}
+select:hover{
+    background-color: #e2e2e2;
+}
+
+  
