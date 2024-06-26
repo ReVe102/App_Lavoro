@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import io from 'socket.io-client';
 import axios from 'axios';
 import Post from './post/Post';
 import './Profilo.css';
 
+const socket = io('http://localhost:3000');
 
 const ProfiloUtente = () => {
     const { privatoId, aziendaId } = useParams();
@@ -20,26 +22,18 @@ const ProfiloUtente = () => {
 
                 if (privatoId) {
                     userResponse = await axios.get(`http://localhost:3000/privati/${privatoId}`);
-                    console.log(`User response for privatoId ${privatoId}:`, userResponse.data);
                     postsResponse = await axios.get(`http://localhost:3000/posts/privato/${privatoId}`);
-                    console.log(`Posts response for privatoId ${privatoId}:`, postsResponse.data);
                 } else if (aziendaId) {
                     userResponse = await axios.get(`http://localhost:3000/aziende/${aziendaId}`);
-                    console.log(`User response for aziendaId ${aziendaId}:`, userResponse.data);
                     postsResponse = await axios.get(`http://localhost:3000/posts/azienda/${aziendaId}`);
-                    console.log(`Posts response for aziendaId ${aziendaId}:`, postsResponse.data);
                 }
 
                 if (userResponse) {
                     setUserOrAzienda(userResponse.data);
-                    console.log('User or Azienda Data:', userResponse.data);
                 }
 
                 if (postsResponse && postsResponse.data) {
                     setPosts(postsResponse.data);
-                    console.log('Posts Data:', postsResponse.data);
-                } else {
-                    console.log('Nessun post trovato.');
                 }
 
                 setLoading(false);
@@ -51,6 +45,14 @@ const ProfiloUtente = () => {
 
         fetchData();
     }, [privatoId, aziendaId]);
+
+    const handleInterestedClick = () => {
+        const data = {
+            privatoId,
+            aziendaId,
+        };
+        socket.emit('interested', data);
+    };
 
     if (loading) {
         return <div>Loading...</div>;
@@ -64,20 +66,20 @@ const ProfiloUtente = () => {
         if (userOrAzienda.status === "privato") {
             return (
                 <div className="formsx">
-                    <button onClick={() => setParagrafo("panoramica")}>Panoramica {paragrafo === "panoramica" ? "si" : "no"}</button>
-                    <button onClick={() => setParagrafo("lavoro")}>Lavoro {paragrafo === "lavoro" ? "si" : "no"}</button>
-                    <button onClick={() => setParagrafo("istruzione")}>Istruzione {paragrafo === "istruzione" ? "si" : "no"}</button>
-                    <button onClick={() => setParagrafo("certificazioni")}>Certificazioni {paragrafo === "certificazioni" ? "si" : "no"}</button>
-                    <button onClick={() => setParagrafo("informazioni di contatto")}>Informazioni di contatto {paragrafo === "informazioni di contatto" ? "si" : "no"}</button>
+                    <button onClick={() => setParagrafo("panoramica")}>Panoramica</button>
+                    <button onClick={() => setParagrafo("lavoro")}>Lavoro</button>
+                    <button onClick={() => setParagrafo("istruzione")}>Istruzione</button>
+                    <button onClick={() => setParagrafo("certificazioni")}>Certificazioni</button>
+                    <button onClick={() => setParagrafo("informazioni di contatto")}>Informazioni di contatto</button>
                 </div>
             );
         } else if (userOrAzienda.status === "azienda") {
             return (
                 <div className="formsx">
-                    <button onClick={() => setParagrafo("panoramica")}>Panoramica {paragrafo === "panoramica" ? "si" : "no"}</button>
-                    <button onClick={() => setParagrafo("profilo aziendale")}>Profilo Aziendale {paragrafo === "profilo aziendale" ? "si" : "no"}</button>
-                    <button onClick={() => setParagrafo("dettagli organizzativi")}>Dettagli organizzativi {paragrafo === "dettagli organizzativi" ? "si" : "no"}</button>
-                    <button onClick={() => setParagrafo("contatti e sedi")}>Contatti e sedi {paragrafo === "contatti e sedi" ? "si" : "no"}</button>
+                    <button onClick={() => setParagrafo("panoramica")}>Panoramica</button>
+                    <button onClick={() => setParagrafo("profilo aziendale")}>Profilo Aziendale</button>
+                    <button onClick={() => setParagrafo("dettagli organizzativi")}>Dettagli organizzativi</button>
+                    <button onClick={() => setParagrafo("contatti e sedi")}>Contatti e sedi</button>
                 </div>
             );
         }
@@ -187,11 +189,9 @@ const ProfiloUtente = () => {
                     <h1>{userOrAzienda.name} {userOrAzienda.status}</h1>
                     <br />
                 </div>
-                <Link to="/chat">
-                    <button className="chatButton">Sono interessato</button>
-                </Link>
-
-                //bottone che mi serve
+                <button className="chatButton" onClick={handleInterestedClick}>
+                    Sono interessato
+                </button>
             </div>
             <div className="footer">
                 <div className="leftbar">

@@ -1,29 +1,50 @@
-const express=require('express')
-const app=express()
+const express = require('express');
+const app = express();
 const cors = require('cors');
-const mongoose=require('mongoose')
+const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
 const dotenv = require('dotenv');
+const http = require('http');
+const { Server } = require('socket.io');
 
-app.use(cors())
+app.use(cors());
 dotenv.config();
 app.use(express.json());
 app.use('/', authRoutes);
 
-//aumento dimensione payload:
+// Aumento della dimensione del payload:
 app.use(express.json({ limit: '100mb' }));
 app.use(express.urlencoded({ limit: '100mb', extended: true }));
 
-const connessioneDb= async()=>{
-    try{
-        await mongoose.connect(process.env.DBURI);
-        console.log("db ok")
-    }catch(err){
-        console.log("errore connessione al db")
+const server = http.createServer(app);
+const io = new Server(server, {
+    cors: {
+        origin: '*',
     }
-}
+});
 
-app.listen(3000, () => {
-    console.log("Server ok");
-    connessioneDb()
+io.on('connection', (socket) => {
+    console.log('Un utente si è connesso:', socket.id);
+
+    socket.on('disconnect', () => {
+        console.log('Un utente si è disconnesso:', socket.id);
+    });
+
+    socket.on('interested', (data) => {
+        io.emit('notification', { message: `L'utente è interessato all'azienda` });
+    });
+});
+
+const connessioneDb = async () => {
+    try {
+        await mongoose.connect(process.env.DBURI);
+        console.log("Connessione al DB riuscita");
+    } catch (err) {
+        console.log("Errore nella connessione al DB");
+    }
+};
+
+server.listen(3000, () => {
+    console.log("Server in esecuzione");
+    connessioneDb();
 });
