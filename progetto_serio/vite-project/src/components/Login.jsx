@@ -82,7 +82,7 @@ export default function Login() {
             
             </div>
             
-            <div class="custom-select-container">
+            
             <select
               id="status"
               name="status"
@@ -93,7 +93,7 @@ export default function Login() {
               <option value="privato">Privato</option>
               <option value="azienda">Azienda</option>
             </select>
-            </div>
+            
             
 
             <button type="submit">Accedi</button>
