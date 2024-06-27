@@ -36,8 +36,20 @@ export default function Post({ post }) {
                 console.error("userId is undefined");
                 return;
             }
-
-            await axios.put(`/posts/${post._id}/like`, { userId });
+    
+            const token = localStorage.getItem('token'); 
+    
+            await axios.post(`http://localhost:3000/posts/like`, 
+            { 
+                postId: post._id,
+                postType: post.privatoId ? 'user' : 'azienda'
+            }, 
+            {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+    
             setLike(isLiked ? like - 1 : like + 1);
             setIsLiked(!isLiked);
         } catch (err) {

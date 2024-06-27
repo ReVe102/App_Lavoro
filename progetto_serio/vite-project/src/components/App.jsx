@@ -9,7 +9,6 @@ import Home from './Home';
 import UpdateUser from './updateUser';
 import HomeComp from './homeComp/HomeComp';
 import HomeEmp from './homeEmp/HomeEmp';
-import Chat from './Chat';
 import NotificationsPage from './NotificationsPage';
 
 const socket = io('http://localhost:3000');
@@ -39,7 +38,6 @@ const App = () => {
           <Route path="/updateUser" element={<UpdateUser />} />
           <Route path="/feedAziende" element={<HomeComp />} />
           <Route path="/feedPrivati" element={<HomeEmp />} />
-          <Route path="/Chat" element={<Chat />} />
           <Route path="/notifications" element={<NotificationsPage />} />
         </Routes>
       </BrowserRouter>
