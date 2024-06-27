@@ -188,7 +188,27 @@ hr{
 
 }
 
-.navbar{
+#navbar{
     display:block;
     background: red;
+}
+
+#chatButton{
+    display: block;
+    margin: 30px auto;
+
+    width:14%;
+
+    padding: 10px;
+    background-color: #188a5a;
+
+    font-size: medium;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+}
+.footer{
+    display: flex;
+    align-items: center;
 }
