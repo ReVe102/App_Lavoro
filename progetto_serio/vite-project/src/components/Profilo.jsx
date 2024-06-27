@@ -102,7 +102,7 @@ const Profilo = () => {
       <div className="header">
         <img src={userData.image || "/default-pfp-1.jpg"} alt="Profile" />
         <div className="nomeutente">
-          <h1>{userData.name} {userData.status}</h1>
+          <h1>{userData.name} </h1>
           <br />
         </div>
         {userData.status === "azienda" && (
@@ -112,13 +112,11 @@ const Profilo = () => {
         )}
         <br />
         <div className="navbar">
-          <div className="navbarLeft">
             <Link to="/feedAziende" className="navbarLink">Feed aziende</Link>
             <Link to="/feedPrivati" className="navbarLink">Feed privati</Link>
-          </div>
-          <div className="navbarRight">
+          
+          
             <button className="navbarButton" onClick={logout}>Logout</button>
-          </div>
         </div>
       </div>
       <div className='info-notifiche'>
@@ -126,8 +124,8 @@ const Profilo = () => {
         <div className="footer">
           <div className="leftbar">
             <div className="titoloLeftbar">
-              <h2>Informazioni</h2>
-              <FontAwesomeIcon icon={faEdit} onClick={() => navigate("/updateUser", { state: userData })} />
+              <h2>Informazioni <FontAwesomeIcon id="iconamodifica" icon={faEdit} onClick={() => navigate("/updateUser", { state: userData })} /></h2>
+              
             </div>
             <div className="formsx">
               <button onClick={() => setParagrafo("panoramica")}>Panoramica</button>
