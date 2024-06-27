@@ -240,13 +240,23 @@ const Profilo = () => {
         <Share />
     
       </div>
-      
+      <div>
         {userPosts.map((post) => (
           
           <PostLogin key={post._id} post={post} />
          
         ))}
       </div>
+      
+      <div className="notifications">
+        <h2>Notifiche</h2>
+        <ul>
+          {notifications.map((notification, index) => (
+            <li key={index}>{notification.message}</li>
+          ))}
+        </ul>
+      </div>
+      
     </div>
   );
 };
