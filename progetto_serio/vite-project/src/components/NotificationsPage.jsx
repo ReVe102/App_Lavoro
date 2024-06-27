@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 import './NotificationsPage.css';
+import axios from 'axios';
 
 const socket = io('http://localhost:3000');
 
@@ -8,8 +9,19 @@ const NotificationsPage = () => {
   const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/notifications');
+        setNotifications(response.data);
+      } catch (error) {
+        console.error('Errore nel recuperare le notifiche', error);
+      }
+    };
+
+    fetchNotifications();
+
     socket.on('notification', (data) => {
-      setNotifications((prevNotifications) => [...prevNotifications, data.message]);
+      setNotifications((prevNotifications) => [...prevNotifications, data]);
       alert(`Nuova notifica: ${data.message}`);
     });
 
@@ -29,7 +41,7 @@ const NotificationsPage = () => {
           <ul className="notifications-list">
             {notifications.map((notification, index) => (
               <li key={index} className="notification-item">
-                {notification}
+                {notification.message}
               </li>
             ))}
           </ul>
