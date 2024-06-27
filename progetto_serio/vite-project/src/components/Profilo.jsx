@@ -6,6 +6,8 @@ import Notifications from './Notifications';
 import './Profilo.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
+
 import axios from 'axios';
 import io from 'socket.io-client';
 
@@ -119,6 +121,7 @@ const Profilo = () => {
           </div>
         </div>
       </div>
+      <div className='info-notifiche'>
       {userData.status === "privato" && (
         <div className="footer">
           <div className="leftbar">
@@ -235,6 +238,21 @@ const Profilo = () => {
           </div>
         </div>
       )}
+      <div className="notifications">
+        <div className='notifichefissato'>
+        <h2>Notifiche <FontAwesomeIcon icon={faBell} style={{ fontSize: '20px' }}/></h2>
+        
+        <hr/>
+        </div>
+        <div className='notifichescorrere'>
+        <ul>
+          {notifications.map((notification, index) => (
+            <li key={index}>{notification.message}</li>
+          ))}
+        </ul>
+        </div>
+      </div>
+      </div>
       <div className="mainbar">
       
         <Share />
@@ -248,14 +266,7 @@ const Profilo = () => {
         ))}
       </div>
       
-      <div className="notifications">
-        <h2>Notifiche</h2>
-        <ul>
-          {notifications.map((notification, index) => (
-            <li key={index}>{notification.message}</li>
-          ))}
-        </ul>
-      </div>
+      
       
     </div>
   );
