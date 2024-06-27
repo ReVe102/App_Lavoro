@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Share from './share/Share';
 import PostLogin from './PostLogin';
@@ -6,6 +6,8 @@ import Notifications from './Notifications';
 import './Profilo.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
+
 import axios from 'axios';
 import io from 'socket.io-client';
 
@@ -17,6 +19,7 @@ const Profilo = () => {
   const [userPosts, setUserPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [paragrafo, setParagrafo] = useState('panoramica');
+  const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -54,9 +57,20 @@ const Profilo = () => {
       }
     };
 
+    const fetchNotifications = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/notifications');
+        setNotifications(response.data);
+      } catch (error) {
+        console.error('Errore nel recuperare le notifiche', error);
+      }
+    };
+
     fetchUserData();
+    fetchNotifications();
 
     socket.on('notification', (data) => {
+      setNotifications((prevNotifications) => [...prevNotifications, data]);
       alert(`Nuova notifica: ${data.message}`);
     });
 
@@ -88,7 +102,7 @@ const Profilo = () => {
       <div className="header">
         <img src={userData.image || "/default-pfp-1.jpg"} alt="Profile" />
         <div className="nomeutente">
-          <h1>{userData.name} {userData.status}</h1>
+          <h1>{userData.name} </h1>
           <br />
         </div>
         {userData.status === "azienda" && (
@@ -98,21 +112,20 @@ const Profilo = () => {
         )}
         <br />
         <div className="navbar">
-          <div className="navbarLeft">
             <Link to="/feedAziende" className="navbarLink">Feed aziende</Link>
             <Link to="/feedPrivati" className="navbarLink">Feed privati</Link>
-          </div>
-          <div className="navbarRight">
+          
+          
             <button className="navbarButton" onClick={logout}>Logout</button>
-          </div>
         </div>
       </div>
+      <div className='info-notifiche'>
       {userData.status === "privato" && (
         <div className="footer">
           <div className="leftbar">
             <div className="titoloLeftbar">
-              <h2>Informazioni</h2>
-              <FontAwesomeIcon icon={faEdit} onClick={() => navigate("/updateUser", { state: userData })} />
+              <h2>Informazioni <FontAwesomeIcon id="iconamodifica" icon={faEdit} onClick={() => navigate("/updateUser", { state: userData })} /></h2>
+              
             </div>
             <div className="formsx">
               <button onClick={() => setParagrafo("panoramica")}>Panoramica</button>
@@ -142,7 +155,7 @@ const Profilo = () => {
               )}
               {paragrafo === "istruzione" && (
                 <ul>
-                  <li>Scuola secondaria: {userData.scuolasuperiore}</li>
+                  <li>Scuola secondaria: {userData.indirizzosuperiore}</li>
                   {userData.corsodilaurea && <li>Università: {userData.corsodilaurea}</li>}
                 </ul>
               )}
@@ -223,14 +236,36 @@ const Profilo = () => {
           </div>
         </div>
       )}
-      <div className="mainbar">
-        <Share />
+      <div className="notifications">
+        <div className='notifichefissato'>
+        <h2>Notifiche <FontAwesomeIcon icon={faBell} style={{ fontSize: '20px' }}/></h2>
+        
+        <hr/>
+        </div>
+        <div className='notifichescorrere'>
+        <ul>
+          {notifications.map((notification, index) => (
+            <li key={index}>{notification.message}</li>
+          ))}
+        </ul>
+        </div>
       </div>
-      <div className="posts">
+      </div>
+      <div className="mainbar">
+      
+        <Share />
+    
+      </div>
+      <div>
         {userPosts.map((post) => (
+          
           <PostLogin key={post._id} post={post} />
+         
         ))}
       </div>
+      
+      
+      
     </div>
   );
 };

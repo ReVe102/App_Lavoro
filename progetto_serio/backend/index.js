@@ -23,6 +23,8 @@ const io = new Server(server, {
     }
 });
 
+let notifications = [];
+
 io.on('connection', (socket) => {
     console.log('Un utente si è connesso:', socket.id);
 
@@ -32,20 +34,26 @@ io.on('connection', (socket) => {
 
     socket.on('interested', (data) => {
         const { senderName, senderId, receiverId } = data;
-        io.emit('notification', { message: `L'utente ${senderName} è interessato/a alla vostra azienda` });
+        const notification = { message: `L'utente ${senderName} è interessato al vostro profilo! `, timestamp: new Date() };
+        notifications.push(notification);
+        io.emit('notification', notification);
     });
+});
+
+app.get('/notifications', (req, res) => {
+    res.json(notifications);
 });
 
 const connessioneDb = async () => {
     try {
         await mongoose.connect(process.env.DBURI);
-        console.log("Connessione al DB riuscitaaaaaaaa");
+        console.log("Connessione al DB riuscita");
     } catch (err) {
-        console.log("Erroree nella connessione al DB");
+        console.log("Errore nella connessione al DB");
     }
 };
 
 server.listen(3000, () => {
-    console.log("Server in esecuzioooone");
+    console.log("Server in esecuzione");
     connessioneDb();
 });

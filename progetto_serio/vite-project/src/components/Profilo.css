@@ -1,28 +1,29 @@
 body{
     font-family: Arial, sans-serif;
     margin: 0;
+    background: linear-gradient(#0F3443,#208d5f);
+
     padding: 0;
     background-color: #f4f4f4;
 }
 
 .header{
     background-color: #fff;
-    border-radius: 8px;
+    border-radius: 18px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    margin: 30px;
+    margin: 50px;
+    align-items: center;
+    display: flex;
 }
 .header>img{
     width:180px;
     height:180px;
-    box-shadow: 0px 0px 20px rgba(0, 0.9, 0.4, 0.4);
+    box-shadow: 0px 0px 10px rgba(0, 0.9, 0.4, 0.4);
     border-radius:50%;
     overflow:hidden;
     margin:20px 50px;
 }
-.header{
-    align-items: center;
-    display: flex;
-}
+
 .nomeutente {
     display: flex;
     flex-direction: column;
@@ -49,14 +50,16 @@ body{
 .footer{
     display: flex;
     background-color: #fff;
-    border-radius: 8px;
+    border-radius: 12px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    margin: 30px;
+    margin: 50px;
+    border-radius: 8px;
+    width: 900px;
 }
 
 .leftbar{
     color: #333;
-    width: 20%;
+    width: 220px;
     padding: 10px;
 }
 
@@ -90,20 +93,13 @@ body{
 }
 
 .testo{
-    
+    flex:6;
   font-family: 'Arial', sans-serif; /* Imposta il font */
   font-size: 18px; /* Dimensione del testo */
   line-height: 1.6; /* Altezza della linea per migliorare la leggibilità */
   color: #333; /* Colore del testo */
   background-color: white; /* Colore di sfondo */
   padding: 15px; /* Spaziatura interna */
-  margin: 20px 0; /* Spaziatura esterna */
-  border-left: 5px ; /* Bordo laterale sinistro per evidenziare il paragrafo */
-  border-radius: 4px; /* Arrotonda gli angoli */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Aggiunge un'ombra leggera */
-  max-width: 1000px; /* Imposta una larghezza massima */
-  margin-left: 30px; /* Centra orizzontalmente */
-  margin-right: auto; /* Centra orizzontalmente */
 }
 
 .paragrafo>h2{
@@ -123,22 +119,7 @@ ul li{
   margin-left: 20px;
 }
 
-.chatButton {
-    background-color: gray;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 10px;
-    cursor: pointer;
-    position: absolute;
-    top: 50px; 
-    right: 50px; 
-    border-radius: 5px;
-}
+
 
 .notificationButton {
     background-color: gray;
@@ -162,3 +143,72 @@ ul li{
     margin-right: 20px;
 }
 
+.info-notifiche{
+    display: flex;               /* Utilizzo del flexbox per disporre gli elementi in orizzontale */
+    justify-content: center;     /* Centra gli elementi orizzontalmente */
+    align-items: center;         /* Centra gli elementi verticalmente */
+    width: 100%;                 /* Occupa tutta la larghezza disponibile */
+}
+.notifications{
+    width: 30%;
+    height: 330px;
+    font-family: 'Arial', sans-serif; /* Imposta il font */
+  font-size: 18px; /* Dimensione del testo */
+  color: #333; /* Colore del testo */
+  background-color: white; /* Colore di sfondo */
+  padding: 15px; /* Spaziatura interna */
+  border-radius: 8px;
+  
+  margin-right: 49px;
+
+}
+.notifications>h2{
+    text-align: center;
+    margin-top:5px;
+}
+
+hr{
+    border: none;          /* Rimuove il bordo predefinito */
+    height: 3px;           /* Imposta l'altezza della linea */
+    background-color: #d1d1d1; /* Colore della linea */
+    margin: 15px 0; 
+    
+}
+
+.notifichescorrere{
+    overflow-y: scroll;    
+    top: 0;
+    background-color: white;
+    height: 200px;
+
+}
+
+#iconamodifica{
+    cursor: pointer;
+
+}
+
+#navbar{
+    display:block;
+    background: red;
+}
+
+#chatButton{
+    display: block;
+    margin: 30px auto;
+
+    width:14%;
+
+    padding: 10px;
+    background-color: #188a5a;
+
+    font-size: medium;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+}
+.footer{
+    display: flex;
+    align-items: center;
+}

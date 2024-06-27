@@ -197,7 +197,7 @@ const ProfiloUtente = () => {
                     <Link to="/feedAziende" className="navbarLink">Feed aziende</Link>
                     <Link to="/feedPrivati" className="navbarLink">Feed privati</Link>
                 </div>
-                <button className="chatButton" onClick={handleInterestedClick}>
+                <button id="chatButton" onClick={handleInterestedClick}>
                     Sono interessato
                 </button>
             </div>

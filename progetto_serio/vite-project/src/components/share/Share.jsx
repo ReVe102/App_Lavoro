@@ -1,6 +1,6 @@
 import axios from "axios";
 import "./share.css";
-import PermMediaIcon from '@mui/icons-material/PermMedia';
+import PermMediaIcon from '@mui/icons-material/AttachFileSharp';
 import { useRef, useState, useEffect } from "react";
 
 export default function Share() {
@@ -161,7 +161,7 @@ export default function Share() {
                         alt=""
                     />
                     <input
-                        placeholder={`Share what you want ${userData.username || userData.name}`}
+                        placeholder={`Share post as ${userData.username || userData.name}`}
                         className="shareInput"
                         ref={desc}
                     />
@@ -171,7 +171,7 @@ export default function Share() {
                     <div className="shareOptions">
                         <label htmlFor="file" className="shareOption">
                             <PermMediaIcon className="ShareIcon" />
-                            <span className="shareOptionText">Foto or video</span>
+                            <span className="shareOptionText">Attach photo</span>
                             <input
                                 style={{ display: "none" }}
                                 type="file"

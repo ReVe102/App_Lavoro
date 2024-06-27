@@ -113,35 +113,39 @@ const Register = () => {
     };
 
     return (
-        <div className="login">
-            <div className="login-container">
-                <h2>Registrati come {userType}</h2>
+        <div className="register">
+            <div className="register-container">
+                <h2>Registrati </h2>
                 <div className="form-group">
                     
-                    <div className="user-type-selection">
-                        <button type="button" onClick={() => handleUserTypeChange("privato")}>
-                            Privato
+                    <div className="status-container">
+                        <button id={userType === "azienda"?"status-no":"status-si"} type="button" onClick={() => handleUserTypeChange("privato")}>
+                            Dipendente
                         </button>
-                        <button type="button" onClick={() => handleUserTypeChange("azienda")}>
+                        <button id={userType === "azienda"?"status-si":"status-no"} type="button" onClick={() => handleUserTypeChange("azienda")}>
                             Azienda
                         </button>
                     </div>
 
 
                     <form onSubmit={handleSubmit} method="post">
+                        <div className='inputs'>
                         <input 
                             type="text"
                             id="nome"
                             name="name"
+                            className='input'
                             required
                             onChange={handleChange}
-                            placeholder="Nome completo" 
+                            placeholder="Nome" 
                         />
 
                         <input
                             type="text"
                             id="email" 
                             name="email"
+                            className='input'
+
                             onChange={handleChange}
                             required
                             placeholder="E-mail"
@@ -150,6 +154,8 @@ const Register = () => {
                         <input 
                             type="password"
                             id="password"
+                            className='input'
+
                             name="password"
                             placeholder="Password"
                             onChange={handleChange}
@@ -161,23 +167,30 @@ const Register = () => {
                                 <input
                                     type="text"
                                     id="biografia"
+                                    className='input'
+
                                     name="biografia"
                                     onChange={handleChange}
                                     required
-                                    placeholder="Biografia..."
+                                    placeholder="Breve biografia..."
                                 />
-
+                                <div class="input-container">
                                 <input
                                     type="date"
                                     id="datanascita"
+                                    className='input'
+
                                     name="datanascita"
                                     onChange={handleChange}
                                     required
                                     placeholder="Data di nascita"
                                 />
-
+                                <label for="datanascita" class="input-label">Data di nascita</label>
+                                </div>
                                 <input
                                     type="text"
+                                    className='input'
+
                                     id="impiego"
                                     name="impiego"
                                     onChange={handleChange}
@@ -189,6 +202,8 @@ const Register = () => {
                                     type="text"
                                     id="ultimolavoro"
                                     name="ultimolavoro"
+                                    className='input'
+
                                     onChange={handleChange}
                                     required
                                     placeholder="Ultimo lavoro..."
@@ -199,6 +214,8 @@ const Register = () => {
                                     id="lavoriprecedenti"
                                     name="lavoriprecedenti"
                                     onChange={handleChange}
+                                    className='input'
+
                                     required
                                     placeholder="Lavori precedenti..."
                                 />
@@ -207,14 +224,38 @@ const Register = () => {
                                     type="text"
                                     id="indirizzosuperiore"
                                     name="indirizzosuperiore"
+                                    className='input'
+
                                     onChange={handleChange}
                                     required
                                     placeholder="Indirizzo superiore..."
+                                />
+                                <input
+                                    type="text"
+                                    id="linguamadre"
+                                    name="linguamadre"
+                                    className='input'
+
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="Lingua madre..."
+                                />
+                                <input
+                                    type="text"
+                                    id="altrelingue"
+                                    name="altrelingue"
+                                    className='input'
+
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="Altre lingue..."
                                 />
 
                                 <input
                                     type="text"
                                     id="corsodilaurea"
+                                    className='input'
+
                                     name="corsodilaurea"
                                     onChange={handleChange}
                                     required
@@ -224,6 +265,8 @@ const Register = () => {
                                 <input
                                     type="text"
                                     id="posizionelavorativaricercata"
+                                    className='input'
+
                                     name="posizionelavorativaricercata"
                                     onChange={handleChange}
                                     required
@@ -233,6 +276,8 @@ const Register = () => {
                                 <input
                                     type="text"
                                     id="luogonascita"
+                                    className='input'
+
                                     name="luogonascita"
                                     onChange={handleChange}
                                     required
@@ -242,6 +287,8 @@ const Register = () => {
                                 <input
                                     type="text"
                                     id="luogoresidenza"
+                                    className='input'
+
                                     name="luogoresidenza"
                                     onChange={handleChange}
                                     required
@@ -251,6 +298,8 @@ const Register = () => {
                                 <input
                                     type="text"
                                     id="cellulare"
+                                    className='input'
+
                                     name="cellulare"
                                     onChange={handleChange}
                                     required
@@ -264,24 +313,33 @@ const Register = () => {
                                 <input
                                     type="text"
                                     id="descrizione"
+                                    className='input'
+
                                     name="descrizione"
                                     onChange={handleChange}
                                     required
-                                    placeholder="Descrizione..."
+                                    placeholder="Breve descrizione..."
                                 />
 
+                                <div class="input-container">
                                 <input
                                     type="date"
                                     id="datanascita"
+                                    className='input'
+
                                     name="datanascita"
                                     onChange={handleChange}
                                     required
                                     placeholder="Data di nascita"
                                 />
+                                <label for="datanascita" class="input-label">Data di nascita</label>
+                                </div>
 
                                 <input
                                     type="text"
                                     id="cienteladiriferimento"
+                                    className='input'
+
                                     name="cienteladiriferimento"
                                     onChange={handleChange}
                                     required
@@ -293,6 +351,8 @@ const Register = () => {
                                     id="numerodipendenti"
                                     name="numerodipendenti"
                                     onChange={handleChange}
+                                    className='input'
+
                                     required
                                     placeholder="Numero di dipendenti..."
                                 />
@@ -300,6 +360,8 @@ const Register = () => {
                                 <input
                                     type="text"
                                     id="fatturatoannuale"
+                                    className='input'
+
                                     name="fatturatoannuale"
                                     onChange={handleChange}
                                     required
@@ -310,6 +372,8 @@ const Register = () => {
                                     type="text"
                                     id="mercati"
                                     name="mercati"
+                                    className='input'
+
                                     onChange={handleChange}
                                     required
                                     placeholder="Mercati..."
@@ -319,6 +383,8 @@ const Register = () => {
                                     type="text"
                                     id="settore"
                                     name="settore"
+                                    className='input'
+
                                     onChange={handleChange}
                                     required
                                     placeholder="Settore..."
@@ -327,6 +393,8 @@ const Register = () => {
                                 <input
                                     type="text"
                                     id="fondatori"
+                                    className='input'
+
                                     name="fondatori"
                                     onChange={handleChange}
                                     required
@@ -337,6 +405,8 @@ const Register = () => {
                                     type="text"
                                     id="ceo"
                                     name="ceo"
+                                    className='input'
+
                                     onChange={handleChange}
                                     required
                                     placeholder="CEO..."
@@ -345,6 +415,8 @@ const Register = () => {
                                 <input
                                     type="text"
                                     id="strutturasocietaria"
+                                    className='input'
+
                                     name="strutturasocietaria"
                                     onChange={handleChange}
                                     required
@@ -354,6 +426,8 @@ const Register = () => {
                                 <input
                                     type="text"
                                     id="certificazioni"
+                                    className='input'
+
                                     name="certificazioni"
                                     onChange={handleChange}
                                     required
@@ -364,6 +438,8 @@ const Register = () => {
                                     type="text"
                                     id="premi"
                                     name="premi"
+                                    className='input'
+
                                     onChange={handleChange}
                                     required
                                     placeholder="Premi..."
@@ -373,6 +449,8 @@ const Register = () => {
                                     type="text"
                                     id="luogonascita"
                                     name="luogonascita"
+                                    className='input'
+
                                     onChange={handleChange}
                                     required
                                     placeholder="Luogo di nascita..."
@@ -380,6 +458,8 @@ const Register = () => {
 
                                 <input
                                     type="text"
+                                    className='input'
+
                                     id="sedelegale"
                                     name="sedelegale"
                                     onChange={handleChange}
@@ -390,6 +470,8 @@ const Register = () => {
                                 <input
                                     type="text"
                                     id="sedioperative"
+                                    className='input'
+
                                     name="sedioperative"
                                     onChange={handleChange}
                                     required
@@ -399,6 +481,8 @@ const Register = () => {
                                 <input
                                     type="text"
                                     id="telefono"
+                                    className='input'
+
                                     name="telefono"
                                     onChange={handleChange}
                                     required
@@ -409,6 +493,8 @@ const Register = () => {
                                     type="text"
                                     id="sitoweb"
                                     name="sitoweb"
+                                    className='input'
+
                                     onChange={handleChange}
                                     required
                                     placeholder="Sito web..."
@@ -417,16 +503,17 @@ const Register = () => {
                         )}
 
                         <input
+                            className='input'
+
                             accept="image/*"
                             type="file"
                             onChange={handleFileChange}
                         />
+                        </div>
 
                         <button className="pulsanteRegistrati" type="submit">Registrati</button>
                     </form>
-                    <div className="registrato">
-                        <a href="/login">Hai già un account? Accedi</a>
-                    </div>
+                    <div className="domanda">Hai già un account?<a href="/login"> Accedi</a></div>
                 </div>
             </div>
         </div>
