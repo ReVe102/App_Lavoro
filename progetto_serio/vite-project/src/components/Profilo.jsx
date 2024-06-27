@@ -142,7 +142,7 @@ const Profilo = () => {
               )}
               {paragrafo === "istruzione" && (
                 <ul>
-                  <li>Scuola secondaria: {userData.scuolasuperiore}</li>
+                  <li>Scuola secondaria: {userData.indirizzosuperiore}</li>
                   {userData.corsodilaurea && <li>Università: {userData.corsodilaurea}</li>}
                 </ul>
               )}
@@ -224,13 +224,17 @@ const Profilo = () => {
         </div>
       )}
       <div className="mainbar">
+      
         <Share />
+    
       </div>
-      <div className="posts">
+      
         {userPosts.map((post) => (
+          
           <PostLogin key={post._id} post={post} />
+         
         ))}
-      </div>
+      
     </div>
   );
 };

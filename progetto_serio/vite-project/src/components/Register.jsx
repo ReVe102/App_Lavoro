@@ -230,6 +230,26 @@ const Register = () => {
                                     required
                                     placeholder="Indirizzo superiore..."
                                 />
+                                <input
+                                    type="text"
+                                    id="linguamadre"
+                                    name="linguamadre"
+                                    className='input'
+
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="Lingua madre..."
+                                />
+                                <input
+                                    type="text"
+                                    id="altrelingue"
+                                    name="altrelingue"
+                                    className='input'
+
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="Altre lingue..."
+                                />
 
                                 <input
                                     type="text"
