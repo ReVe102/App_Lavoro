@@ -17,7 +17,7 @@ export default function Sidebar(){
                     <li className="sidebarListItem">
                     <Link to="/feedPrivati" className="sidebarLink">
                         <BadgeIcon className="sidebarIcon"/>
-                        <span className="sidebarListItemText">Collaborators Area</span>
+                        <span className="sidebarListItemText">Employee Area</span>
                     </Link>   
                     </li>
                     <li className="sidebarListItem">
@@ -26,10 +26,7 @@ export default function Sidebar(){
                         <span className="sidebarListItemText">Business Area</span>
                     </Link>   
                     </li>
-                    <li className="sidebarListItem">
-                        <ChatIcon className="sidebarIcon"/>
-                        <span className="sidebarListItemText">Chat</span>
-                    </li>
+                    
                     <Link to="/profilo" className="sidebarLink">
                     <li className="sidebarListItem">
                         <PersonIcon className="sidebarIcon"/>
