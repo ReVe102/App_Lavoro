@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Share from './share/Share';
 import PostLogin from './PostLogin';
@@ -17,6 +17,7 @@ const Profilo = () => {
   const [userPosts, setUserPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [paragrafo, setParagrafo] = useState('panoramica');
+  const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -54,9 +55,20 @@ const Profilo = () => {
       }
     };
 
+    const fetchNotifications = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/notifications');
+        setNotifications(response.data);
+      } catch (error) {
+        console.error('Errore nel recuperare le notifiche', error);
+      }
+    };
+
     fetchUserData();
+    fetchNotifications();
 
     socket.on('notification', (data) => {
+      setNotifications((prevNotifications) => [...prevNotifications, data]);
       alert(`Nuova notifica: ${data.message}`);
     });
 
@@ -230,6 +242,14 @@ const Profilo = () => {
         {userPosts.map((post) => (
           <PostLogin key={post._id} post={post} />
         ))}
+      </div>
+      <div className="notifications">
+        <h2>Notifiche</h2>
+        <ul>
+          {notifications.map((notification, index) => (
+            <li key={index}>{notification.message}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );
