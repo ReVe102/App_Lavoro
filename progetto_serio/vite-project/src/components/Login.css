@@ -1,6 +1,7 @@
 
-.register {
+.login {
     font-family: Arial, sans-serif;
+    overflow-y: auto;
     background: linear-gradient(#0F3443,#34E89E);
     margin: 0;
     padding: 0;
@@ -9,21 +10,27 @@
     align-items: center;
     height: 100vh;
 }
-.register-container {
+.login-container {
     overflow-y: auto;
     background-color: #fff;
-    width:700px;
-    padding: 10px;
-    margin:40px;
-    border-radius: 16px;
-    max-height: 85vh; /* Altezza massima del contenitore */
-     /* Abilita lo scorrimento verticale */
+    width:400px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
-.register-container h2 {
+.login-container h2 {
     margin: 15px;
     text-align: center;
 }
-
+.login-container {
+    max-height: 90vh; /* Altezza massima del contenitore */
+     /* Abilita lo scorrimento verticale */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 18px;
+    max-width: 600px; /* Larghezza massima del contenitore */
+    margin: 0 auto; /* Centra il contenitore */
+}
 
 .form-group {
     display: flex;
@@ -47,8 +54,12 @@
 
 }
 
+.input img{
+    margin: 0 10px;
+    height: 50%;
+}
 
-input{
+.input input{
     height: 50px;
     width: 80%;
     background: transparent;
@@ -58,7 +69,7 @@ input{
 }
 
 
-.pulsanteRegistrati {
+.form-group button {
     display: block;
     margin: 30px auto;
 
@@ -75,7 +86,7 @@ input{
 
 
 }
-.pulsanteRegistrati:hover {
+.form-group button:hover {
     background-color: #0f583a;
 }
 
@@ -89,11 +100,11 @@ input{
 a{
     color: #269667;
     text-decoration: none;
+    cursor:pointer;
+
 }
 a:hover{
     color:#797979;
-    cursor:pointer;
-
     
 }
 
@@ -126,54 +137,3 @@ select:hover{
 }
 
   
-
-
-#status-si{
-    font-family: Arial, sans-serif;
-    cursor:pointer;
-    border-radius: 26px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 45px;
-    background: linear-gradient(#0e9a60,#0c8955);
-    font-weight: 500;
-}
-
-#status-no{
-    font-family: Arial, sans-serif;
-    cursor:pointer;
-    border-radius: 26px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 45px;
-    background: #bab7b7;
-    font-weight: 500;
-}
-
-.status-container{
-    display: flex;
-    gap: 30px;
-    margin: 20px ;
-}
-
-
-
-.input-container {
-    position: relative;
-    margin: 20px 0;
-    width: 100%;
-}
-.input-label {
-    position: absolute;
-    top: -10px; /* Posizione il label sopra l'input */
-    left: 80px;
-    background-color:white;
-    border-radius: 10px;
-    border: #f0f0f0 solid 1px;
-    padding: 0 5px;
-    color: #797979;
-    font-size: 12px;
-    pointer-events: none;
-}
