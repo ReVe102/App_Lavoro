@@ -99,6 +99,13 @@ const Profilo = () => {
 
   return (
     <div className="container">
+      <div className="navbar">
+        <div className="left-links">
+          <Link to="/feedAziende" className="navbarLink">Feed aziende</Link>
+          <Link to="/feedPrivati" className="navbarLink">Feed privati</Link>
+        </div>
+        <button className="navbarButton" onClick={logout}>Logout</button>
+      </div>
       <div className="header">
         <img src={userData.image || "/default-pfp-1.jpg"} alt="Profile" />
         <div className="nomeutente">
@@ -111,161 +118,146 @@ const Profilo = () => {
           </button>
         )}
         <br />
-        <div className="navbar">
-            <Link to="/feedAziende" className="navbarLink">Feed aziende</Link>
-            <Link to="/feedPrivati" className="navbarLink">Feed privati</Link>
-          
-          
-            <button className="navbarButton" onClick={logout}>Logout</button>
-        </div>
       </div>
+
       <div className='info-notifiche'>
-      {userData.status === "privato" && (
-        <div className="footer">
-          <div className="leftbar">
-            <div className="titoloLeftbar">
-              <h2>Informazioni <FontAwesomeIcon id="iconamodifica" icon={faEdit} onClick={() => navigate("/updateUser", { state: userData })} /></h2>
-              
+        {userData.status === "privato" && (
+          <div className="footer">
+            <div className="leftbar">
+              <div className="titoloLeftbar">
+                <h2>Informazioni <FontAwesomeIcon id="iconamodifica" icon={faEdit} onClick={() => navigate("/updateUser", { state: userData })} /></h2>
+              </div>
+              <div className="formsx">
+                <button onClick={() => setParagrafo("panoramica")}>Panoramica</button>
+                <button onClick={() => setParagrafo("lavoro")}>Lavoro</button>
+                <button onClick={() => setParagrafo("istruzione")}>Istruzione</button>
+                <button onClick={() => setParagrafo("certificazioni")}>Certificazioni</button>
+                <button onClick={() => setParagrafo("informazioni di contatto")}>Informazioni di contatto</button>
+              </div>
             </div>
-            <div className="formsx">
-              <button onClick={() => setParagrafo("panoramica")}>Panoramica</button>
-              <button onClick={() => setParagrafo("lavoro")}>Lavoro</button>
-              <button onClick={() => setParagrafo("istruzione")}>Istruzione</button>
-              <button onClick={() => setParagrafo("certificazioni")}>Certificazioni</button>
-              <button onClick={() => setParagrafo("informazioni di contatto")}>Informazioni di contatto</button>
-            </div>
-          </div>
-          <div className="vertical-line"></div>
-          <div className="paragrafo">
-            <h2>{paragrafo}</h2>
-            <div className="testo">
-              {paragrafo === "panoramica" && (
-                <ul>
-                  <li><b>{userData.impiego}</b></li>
-                  <li>Vive a: {userData.luogoresidenza}</li>
-                  <li>Nato a: {userData.luogonascita}</li>
-                  <li>Posizione lavorativa ricercata: {userData.posizionelavorativaricercata}</li>
-                </ul>
-              )}
-              {paragrafo === "lavoro" && (
-                <ul>
-                  <li>Esperienza lavorativa più recente: {userData.ultimolavoro}</li>
-                  <li>Esperienze lavorative precedenti: {userData.lavoriprecedenti}</li>
-                </ul>
-              )}
-              {paragrafo === "istruzione" && (
-                <ul>
-                  <li>Scuola secondaria: {userData.indirizzosuperiore}</li>
-                  {userData.corsodilaurea && <li>Università: {userData.corsodilaurea}</li>}
-                </ul>
-              )}
-              {paragrafo === "certificazioni" && (
-                <ul>
-                  <li>Lingua madre: {userData.linguamadre}</li>
-                  <li>Altre lingue: {userData.altrelingue}</li>
-                  {userData.certificazionilinguistiche && <li>Certificazioni linguistiche: {userData.certificazionilinguistiche}</li>}
-                  {userData.certificazioniinformatiche && <li>Certificazioni informatiche: {userData.certificazioniinformatiche}</li>}
-                </ul>
-              )}
-              {paragrafo === "informazioni di contatto" && (
-                <ul>
-                  <li>Email: {userData.email}</li>
-                  <li>Cellulare: {userData.cellulare}</li>
-                </ul>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-      {userData.status === "azienda" && (
-        <div className="footer">
-          <div className="leftbar">
-            <div className="titoloLeftbar">
-              <h2>Informazioni</h2>
-              <FontAwesomeIcon icon={faEdit} onClick={() => navigate("/updateUser", { state: userData })} />
-            </div>
-            <div className="formsx">
-              <button onClick={() => setParagrafo("panoramica")}>Panoramica</button>
-              <button onClick={() => setParagrafo("profilo aziendale")}>Profilo Aziendale</button>
-              <button onClick={() => setParagrafo("dettagli organizzativi")}>Dettagli organizzativi</button>
-              <button onClick={() => setParagrafo("contatti e sedi")}>Contatti e sedi</button>
+            <div className="vertical-line"></div>
+            <div className="paragrafo">
+              <h2>{paragrafo}</h2>
+              <div className="testo">
+                {paragrafo === "panoramica" && (
+                  <ul>
+                    <li><b>{userData.impiego}</b></li>
+                    <li>Vive a: {userData.luogoresidenza}</li>
+                    <li>Nato a: {userData.luogonascita}</li>
+                    <li>Posizione lavorativa ricercata: {userData.posizionelavorativaricercata}</li>
+                  </ul>
+                )}
+                {paragrafo === "lavoro" && (
+                  <ul>
+                    <li>Esperienza lavorativa più recente: {userData.ultimolavoro}</li>
+                    <li>Esperienze lavorative precedenti: {userData.lavoriprecedenti}</li>
+                  </ul>
+                )}
+                {paragrafo === "istruzione" && (
+                  <ul>
+                    <li>Scuola secondaria: {userData.indirizzosuperiore}</li>
+                    {userData.corsodilaurea && <li>Università: {userData.corsodilaurea}</li>}
+                  </ul>
+                )}
+                {paragrafo === "certificazioni" && (
+                  <ul>
+                    <li>Lingua madre: {userData.linguamadre}</li>
+                    <li>Altre lingue: {userData.altrelingue}</li>
+                    {userData.certificazionilinguistiche && <li>Certificazioni linguistiche: {userData.certificazionilinguistiche}</li>}
+                    {userData.certificazioniinformatiche && <li>Certificazioni informatiche: {userData.certificazioniinformatiche}</li>}
+                  </ul>
+                )}
+                {paragrafo === "informazioni di contatto" && (
+                  <ul>
+                    <li>Email: {userData.email}</li>
+                    <li>Cellulare: {userData.cellulare}</li>
+                  </ul>
+                )}
+              </div>
             </div>
           </div>
-          <div className="vertical-line"></div>
-          <div className="paragrafo">
-            <h2>{paragrafo}</h2>
-            <div className="testo">
-              {paragrafo === "panoramica" && (
-                <ul>
-                  <li>Nome azienda: {userData.name}</li>
-                  <li>Sede legale: {userData.sedelegale}</li>
-                  <li>Fondata da: {userData.fondatori}</li>
-                  <li>Premi: {userData.premi}</li>
-                  <li>Sito web: {userData.sitoweb}</li>
-                </ul>
-              )}
-              {paragrafo === "profilo aziendale" && (
-                <ul>
-                  <li>Descrizione: {userData.descrizione}</li>
-                  <li>Target: {userData.clienteladiriferimento}</li>
-                  <li>Numero dipendenti: {userData.numerodipendenti}</li>
-                  <li>Fatturato annuale: {userData.fatturatoannuale}</li>
-                  <li>Mercati: {userData.mercati}</li>
-                </ul>
-              )}
-              {paragrafo === "dettagli organizzativi" && (
-                <ul>
-                  <li>Settore: {userData.settore}</li>
-                  <li>Fondatori: {userData.fondatori}</li>
-                  <li>CEO: {userData.ceo}</li>
-                  <li>Struttura societaria: {userData.strutturasocietaria}</li>
-                  <li>Certificazioni: {userData.certificazioni}</li>
-                  <li>Premi: {userData.premi}</li>
-                </ul>
-              )}
-              {paragrafo === "contatti e sedi" && (
-                <ul>
-                  <li>Sede legale: {userData.sedelegale}</li>
-                  <li>Sedi operative: {userData.sedioperative}</li>
-                  <li>Telefono: {userData.telefono}</li>
-                  <li>Email: {userData.email}</li>
-                  <li>Sito web: {userData.sitoweb}</li>
-                </ul>
-              )}
+        )}
+        {userData.status === "azienda" && (
+          <div className="footer">
+            <div className="leftbar">
+              <div className="titoloLeftbar">
+                <h2>Informazioni</h2>
+                <FontAwesomeIcon icon={faEdit} onClick={() => navigate("/updateUser", { state: userData })} />
+              </div>
+              <div className="formsx">
+                <button onClick={() => setParagrafo("panoramica")}>Panoramica</button>
+                <button onClick={() => setParagrafo("profilo aziendale")}>Profilo Aziendale</button>
+                <button onClick={() => setParagrafo("dettagli organizzativi")}>Dettagli organizzativi</button>
+                <button onClick={() => setParagrafo("contatti e sedi")}>Contatti e sedi</button>
+              </div>
+            </div>
+            <div className="vertical-line"></div>
+            <div className="paragrafo">
+              <h2>{paragrafo}</h2>
+              <div className="testo">
+                {paragrafo === "panoramica" && (
+                  <ul>
+                    <li>Nome azienda: {userData.name}</li>
+                    <li>Sede legale: {userData.sedelegale}</li>
+                    <li>Fondata da: {userData.fondatori}</li>
+                    <li>Premi: {userData.premi}</li>
+                    <li>Sito web: {userData.sitoweb}</li>
+                  </ul>
+                )}
+                {paragrafo === "profilo aziendale" && (
+                  <ul>
+                    <li>Descrizione: {userData.descrizione}</li>
+                    <li>Target: {userData.clienteladiriferimento}</li>
+                    <li>Numero dipendenti: {userData.numerodipendenti}</li>
+                    <li>Fatturato annuale: {userData.fatturatoannuale}</li>
+                    <li>Mercati: {userData.mercati}</li>
+                  </ul>
+                )}
+                {paragrafo === "dettagli organizzativi" && (
+                  <ul>
+                    <li>Settore: {userData.settore}</li>
+                    <li>Fondatori: {userData.fondatori}</li>
+                    <li>CEO: {userData.ceo}</li>
+                    <li>Struttura societaria: {userData.strutturasocietaria}</li>
+                    <li>Certificazioni: {userData.certificazioni}</li>
+                    <li>Premi: {userData.premi}</li>
+                  </ul>
+                )}
+                {paragrafo === "contatti e sedi" && (
+                  <ul>
+                    <li>Sede legale: {userData.sedelegale}</li>
+                    <li>Sedi operative: {userData.sedioperative}</li>
+                    <li>Telefono: {userData.telefono}</li>
+                    <li>Email: {userData.email}</li>
+                    <li>Sito web: {userData.sitoweb}</li>
+                  </ul>
+                )}
+              </div>
             </div>
           </div>
+        )}
+        <div className="notifications">
+          <div className='notifichefissato'>
+            <h2>Notifiche <FontAwesomeIcon icon={faBell} style={{ fontSize: '20px' }}/></h2>
+            <hr/>
+          </div>
+          <div className='notifichescorrere'>
+            <ul>
+              {notifications.map((notification, index) => (
+                <li key={index}>{notification.message}</li>
+              ))}
+            </ul>
+          </div>
         </div>
-      )}
-      <div className="notifications">
-        <div className='notifichefissato'>
-        <h2>Notifiche <FontAwesomeIcon icon={faBell} style={{ fontSize: '20px' }}/></h2>
-        
-        <hr/>
-        </div>
-        <div className='notifichescorrere'>
-        <ul>
-          {notifications.map((notification, index) => (
-            <li key={index}>{notification.message}</li>
-          ))}
-        </ul>
-        </div>
-      </div>
       </div>
       <div className="mainbar">
-      
         <Share />
-    
       </div>
       <div>
         {userPosts.map((post) => (
-          
           <PostLogin key={post._id} post={post} />
-         
         ))}
       </div>
-      
-      
-      
     </div>
   );
 };

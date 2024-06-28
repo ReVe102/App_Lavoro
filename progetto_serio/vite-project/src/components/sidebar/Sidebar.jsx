@@ -1,14 +1,9 @@
 import "./sidebar.css"
 import { Link } from 'react-router-dom';
-import HomeIcon from '@mui/icons-material/Home';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import ChatIcon from '@mui/icons-material/Chat';
-import GroupsIcon from '@mui/icons-material/Groups';
 import PersonIcon from '@mui/icons-material/Person';
 import BusinessIcon from '@mui/icons-material/Business';
 import BadgeIcon from '@mui/icons-material/Badge';
 
-//togliere robe che non implementiamo
 export default function Sidebar(){
     return(
         <div className="sidebar">

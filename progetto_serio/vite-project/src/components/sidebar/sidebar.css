@@ -1,39 +1,47 @@
-.sidebar{
-    position: sticky;
-    align-items: center;
-}
-.sidebarWrapper {
-    position: sticky;
-
-    margin:20px;
-    padding:0;
-    align-items: center;
+.sidebar {
+    position: fixed;
+    top: 150px; /* Spazio sotto la topbar */
+    left: 20px; /* Aggiunta posizione a sinistra */
     width: 270px;
-    background-color: #f4f4f4; 
+    background-color: white;
+    z-index: 1000;
+    border: 1px solid #ddd;
     border-radius: 16px;
-
+    padding: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Aggiunta ombra per effetto di profondità */
+    overflow: hidden; /* Assicura che il contenuto rimanga all'interno dei bordi */
 }
 
+.sidebarWrapper {
+    width: 100%;
+}
 
+.sidebarList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
 
 .sidebarListItem {
     display: flex;
     align-items: center;
     font-size: 17px;
     background-color: #fff;
-    width: 200px;
-    padding:5px;
-    border-radius: 12px;
-    height:50px;
-    border:none;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    width: 100%;
+    padding: 10px; /* Aumentato padding */
+    border-bottom: 2px solid #ddd; /* Linee di separazione più marcate */
+    height: auto; /* Altezza automatica per adattarsi al contenuto */
+    cursor: pointer;
+    box-sizing: border-box; /* Assicura che padding e bordi siano inclusi nella larghezza totale */
+}
 
+.sidebarListItem:last-child {
+    border-bottom: none; /* Rimuove la linea di separazione dall'ultimo elemento */
 }
 
 .sidebarIcon {
     margin-right: 15px;
-    color: #555; 
+    color: #555;
 }
 
 .sidebarLink {
@@ -41,6 +49,7 @@
     color: inherit;
     display: flex;
     align-items: center;
+    width: 100%; /* Assicura che il link riempia l'intera larghezza dell'elemento */
 }
 
 .sidebarListItem:hover {
@@ -50,5 +59,5 @@
 
 .sidebarListItemText {
     font-size: 18px;
-    color: #333; 
+    color: #333;
 }
