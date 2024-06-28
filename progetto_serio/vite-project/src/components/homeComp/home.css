@@ -5,22 +5,17 @@
 }
 
 .sidebar {
-    flex: 1;
-    max-width: 250px; 
+    flex: 0 0 270px; /* Assicura che la sidebar abbia una larghezza fissa */
 }
 
 .feed {
-    display: flex;
-    margin-left: 20px; 
-}
-
-.rightbar {
     flex: 1;
-    max-width: 250px; 
+    margin-left: 310px; /* Distanza di 3 cm (circa 30px) dalla sidebar */
+    padding-top: 70px; /* Per compensare la topbar */
 }
 
 .feedWrapper {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: calc(100% - 310px); /* Assicura che i post occupino il resto dello spazio senza sovrapporsi */
 }

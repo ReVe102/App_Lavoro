@@ -1,115 +1,73 @@
-.post{
+.post {
     width: 100%;
     border-radius: 10px;
-    box-shadow: 0px 2px 83px -56px rgba(0,0,0,1);
--webkit-box-shadow: 0px 2px 83px -56px rgba(0,0,0,1);
--moz-box-shadow: 0px 2px 83px -56px rgba(0,0,0,1);
-margin: 30px 0;
+    box-shadow: 0px 2px 83px -56px rgba(0, 0, 0, 1);
+    -webkit-box-shadow: 0px 2px 83px -56px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 0px 2px 83px -56px rgba(0, 0, 0, 1);
+    margin: 30px 0;
 }
 
-.postWrapper{
+.postWrapper {
     padding: 10px;
 }
 
-.postTop{
-    display:flex;
+.postTop {
+    display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.postTopLeft{
+.postTopLeft {
     display: flex;
     align-items: center;
 }
 
-.postProfileImg{
+.postProfileImg {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.postUsername{
+.postUsername {
     font-size: 15px;
     font-weight: 500;
     margin: 0 10px;
 }
 
-.postDate{
+.postDate {
     font-size: 12px;
 }
 
-.postCenter{
+.postCenter {
     margin: 20px 0;
 }
 
-.postImg{
+.postImg {
     margin-top: 20px;
     width: 100%;
     max-height: 500px;
     object-fit: contain;
 }
 
-.postBottom{
+.postBottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.postBottomLeft{
-    display:flex;
+.postBottomLeft {
+    display: flex;
     align-items: center;
 }
 
-.likeIcon{
+.likeIcon {
     width: 24px;
     height: 24px;
     margin-right: 5px;
     cursor: pointer;
 }
 
-.postLikeCounter{
+.postLikeCounter {
     font-size: 15px;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #f8f9fa;
-}
-
-.navbarLeft {
-    display: flex;
-}
-
-.navbarLink {
-    margin-right: 20px;
-    text-decoration: none;
-    color: #007bff;
-    font-size: 16px;
-}
-
-.navbarLink:hover {
-    text-decoration: underline;
-}
-
-.navbarRight {
-    display: flex;
-    align-items: center;
-}
-
-.navbarButton {
-    padding: 10px 20px;
-    background-color: #dc3545;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.navbarButton:hover {
-    background-color: #c82333;
 }

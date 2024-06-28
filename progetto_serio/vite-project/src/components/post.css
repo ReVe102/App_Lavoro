@@ -1,11 +1,12 @@
 .post{
     position: relative;
-    width: 100%;
+    background-color: white;
+    width: 80%;
+    margin: 40px auto  ;
     border-radius: 10px;
     box-shadow: 0px 2px 83px -56px rgba(0,0,0,1);
 -webkit-box-shadow: 0px 2px 83px -56px rgba(0,0,0,1);
 -moz-box-shadow: 0px 2px 83px -56px rgba(0,0,0,1);
-margin: 30px 0;
 }
 
 .postWrapper{

@@ -34,7 +34,7 @@ io.on('connection', (socket) => {
 
     socket.on('interested', (data) => {
         const { senderName, senderId, receiverId } = data;
-        const notification = { message: `L'utente ${senderName} è interessato/a alla vostra azienda`,  };
+        const notification = { message: `L'utente ${senderName} è interessato/a alla vostra azienda`, timestamp: new Date() };
         notifications.push(notification);
         io.emit('notification', notification);
     });
