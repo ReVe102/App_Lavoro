@@ -1,3 +1,4 @@
+// server.js
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -6,14 +7,13 @@ const authRoutes = require('./routes/authRoutes');
 const dotenv = require('dotenv');
 const http = require('http');
 const { Server } = require('socket.io');
-const Notification = require('./models/Notification'); // Importa il modello di notifica
+const Notification = require('./models/Notification');
 
 app.use(cors());
 dotenv.config();
 app.use(express.json());
 app.use('/', authRoutes);
 
-// Aumento della dimensione del payload:
 app.use(express.json({ limit: '100mb' }));
 app.use(express.urlencoded({ limit: '100mb', extended: true }));
 
@@ -41,8 +41,11 @@ io.on('connection', (socket) => {
         });
         await notification.save();
 
-        // Invia la notifica solo al destinatario specifico
-        socket.to(receiverId).emit('notification', notification);
+        io.to(receiverId).emit('notification', notification); // Invia la notifica al destinatario specifico
+    });
+
+    socket.on('join', (userId) => {
+        socket.join(userId); // Unisciti alla stanza corrispondente all'ID utente
     });
 });
 

@@ -29,10 +29,16 @@ const NotificationsPage = () => {
       }
     });
 
-    // Cleanup the socket connection on component unmount
     return () => {
       socket.off('notification');
     };
+  }, []);
+
+  useEffect(() => {
+    const loggedUser = JSON.parse(localStorage.getItem('userData'));
+    if (loggedUser) {
+      socket.emit('join', loggedUser._id);
+    }
   }, []);
 
   return (

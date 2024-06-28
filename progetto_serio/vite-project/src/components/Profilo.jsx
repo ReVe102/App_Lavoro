@@ -5,8 +5,7 @@ import PostLogin from './PostLogin';
 import Notifications from './Notifications';
 import './Profilo.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
-import { faBell } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faBell } from '@fortawesome/free-solid-svg-icons';
 
 import axios from 'axios';
 import io from 'socket.io-client';
@@ -30,23 +29,20 @@ const Profilo = () => {
         }
 
         const userDataResponse = await axios.post('http://localhost:3000/userData', { token });
-        console.log('UserData Response:', userDataResponse.data);
         if (userDataResponse.data.status === 'error' && userDataResponse.data.data === 'token expired') {
           alert('Token scaduto. Effettua il login.');
           window.localStorage.clear();
           navigate('/Login');
         } else {
           setUserData(userDataResponse.data.data);
-          window.localStorage.setItem('userData', JSON.stringify(userDataResponse.data.data));  // Salva i dati dell'utente nel localStorage
+          window.localStorage.setItem('userData', JSON.stringify(userDataResponse.data.data));
 
           const postsResponse = await axios.get('http://localhost:3000/posts/profilo', {
             headers: {
               Authorization: token
             }
           });
-          console.log('Posts Response:', postsResponse.data);
 
-          // Ordina i post per data di creazione decrescente
           const sortedPosts = postsResponse.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
           setUserPosts(sortedPosts);
         }
@@ -74,11 +70,16 @@ const Profilo = () => {
       alert(`Nuova notifica: ${data.message}`);
     });
 
-    // Cleanup the socket connection on component unmount
     return () => {
       socket.off('notification');
     };
   }, [navigate]);
+
+  useEffect(() => {
+    if (userData) {
+      socket.emit('join', userData._id);
+    }
+  }, [userData]);
 
   const logout = () => {
     window.localStorage.clear();
