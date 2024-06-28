@@ -7,15 +7,13 @@ body {
 }
 
 .header {
-    margin-top: 300px;
     background-color: #fff;
     border-radius: 18px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    margin: 50px;
+    margin: 20px 76px;
     align-items: center;
     display: flex;
     position: relative;
-    justify-content: space-between; /* Aggiunto per distribuire lo spazio */
 }
 
 .header>img {
@@ -34,41 +32,49 @@ body {
     padding: 15px;
 }
 
-.navbar {
+.buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Distribuisci lo spazio tra i pulsanti a sinistra e destra */
     align-items: center;
     width: 100%;
-    position: absolute;
-    top: 10px;
+    background-color: transparent;
+    margin-top: 10px;
 }
 
-.navbar .left-links {
+.left-buttons {
     display: flex;
+    margin-left: 76px; /* Aggiungi un margine a sinistra di 76px */
 }
 
-.navbarLink, .navbarButton {
+.right-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 76px; /* Aggiungi un margine a destra di 76px */
+}
+
+.navbarButton {
     font-size: 17px;
-    background-color: transparent; /* Imposta il background trasparente */
-    color: white;
-    border: 1px solid white;
-    border-radius: 8px;
-    padding: 10px 20px;
-    margin: 10px;
+    background-color: transparent !important; /* Forza lo sfondo trasparente */
+    color: white !important; /* Forza il colore del testo bianco */
+    border: 1px solid white !important; /* Forza il bordo bianco */
+    border-radius: 8px !important; /* Forza i bordi arrotondati */
+    padding: 10px 20px !important;
+    margin: 10px !important;
     cursor: pointer;
     text-decoration: none;
 }
 
-.navbarLink:hover, .navbarButton:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+.navbarButton:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important; /* Cambia lo sfondo al passaggio del mouse */
 }
 
 .footer {
     display: flex;
+    align-items: center;
     background-color: #fff;
     border-radius: 12px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    margin: 50px;
+    margin: 20px 76px;
     border-radius: 8px;
     width: 900px;
 }
@@ -201,11 +207,6 @@ hr {
     cursor: pointer;
 }
 
-#navbar {
-    display: block;
-    background: red;
-}
-
 #chatButton {
     display: block;
     margin: 30px auto;
@@ -219,7 +220,3 @@ hr {
     cursor: pointer;
 }
 
-.footer {
-    display: flex;
-    align-items: center;
-}

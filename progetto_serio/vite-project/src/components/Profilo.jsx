@@ -99,17 +99,19 @@ const Profilo = () => {
 
   return (
     <div className="container">
-      <div className="navbar">
-        <div className="left-links">
-          <Link to="/feedAziende" className="navbarLink">Feed aziende</Link>
-          <Link to="/feedPrivati" className="navbarLink">Feed privati</Link>
+      <div className="buttons">
+        <div className="left-buttons">
+          <Link to="/feedAziende" className="navbarButton">Business Area</Link>
+          <Link to="/feedPrivati" className="navbarButton">Employee Area</Link>
         </div>
-        <button className="navbarButton" onClick={logout}>Logout</button>
+        <div className="right-button">
+          <button className="navbarButton" onClick={logout}>Logout</button>
+        </div>
       </div>
       <div className="header">
         <img src={userData.image || "/default-pfp-1.jpg"} alt="Profile" />
         <div className="nomeutente">
-          <h1>{userData.name} </h1>
+          <h1>{userData.name}</h1>
           <br />
         </div>
         {userData.status === "azienda" && (
