@@ -168,7 +168,7 @@ select:hover{
 .input-label {
     position: absolute;
     top: -10px; /* Posizione il label sopra l'input */
-    left: 80px;
+    left: 60px;
     background-color:white;
     border-radius: 10px;
     border: #f0f0f0 solid 1px;
@@ -176,4 +176,6 @@ select:hover{
     color: #797979;
     font-size: 12px;
     pointer-events: none;
+    transition: 0.2s ease all;
+
 }
