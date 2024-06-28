@@ -1,6 +1,6 @@
 .post{
     position: relative;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.6);
     width: 80%;
     margin: 40px auto  ;
     border-radius: 10px;

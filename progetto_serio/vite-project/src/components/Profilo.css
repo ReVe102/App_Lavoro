@@ -3,11 +3,10 @@ body {
     margin: 0;
     background: linear-gradient(#0F3443, #208d5f);
     padding: 0;
-    background-color: #f4f4f4;
 }
 
 .header {
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.6);
     border-radius: 18px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     margin: 20px 76px;
@@ -19,7 +18,7 @@ body {
 .header>img {
     width: 180px;
     height: 180px;
-    box-shadow: 0px 0px 10px rgba(0, 0.9, 0.4, 0.4);
+    box-shadow: 0px 0px 10px rgba(0, 0.9, 0.4, 0.6);
     border-radius: 50%;
     overflow: hidden;
     margin: 20px 50px;
@@ -55,7 +54,7 @@ body {
 .navbarButton {
     font-size: 17px;
     background-color: transparent !important; /* Forza lo sfondo trasparente */
-    color: white !important; /* Forza il colore del testo bianco */
+    color: rgba(255, 255, 255, 0.6);
     border: 1px solid white !important; /* Forza il bordo bianco */
     border-radius: 8px !important; /* Forza i bordi arrotondati */
     padding: 10px 20px !important;
@@ -71,7 +70,7 @@ body {
 .footer {
     display: flex;
     align-items: center;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.6);
     border-radius: 12px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     margin: 20px 76px;
@@ -100,7 +99,7 @@ body {
     align-items: center;
     padding-left: 20px;
     font-size: 17px;
-    background-color: #fff;
+    background-color: transparent;
     width: 100%;
     border-radius: 5px;
     height: 50px;
@@ -112,10 +111,7 @@ body {
 }
 
 .vertical-line {
-    border-left: 3px solid #333; 
-    height: auto;
-    align-self: strecth;
-    margin: 0 20px;
+    border-left: 3px solid #ff0000; /* Imposta uno stile di linea solida nera a sinistra */
 }
 
 .testo {
@@ -124,8 +120,9 @@ body {
     font-size: 18px; /* Dimensione del testo */
     line-height: 1.6; /* Altezza della linea per migliorare la leggibilità */
     color: #333; /* Colore del testo */
-    background-color: white; /* Colore di sfondo */
-    padding: 15px; /* Spaziatura interna */
+    background-color:transparent;
+    height: 260px;
+    padding: 5px; /* Spaziatura interna */
 }
 
 .paragrafo>h2 {
@@ -147,7 +144,7 @@ ul li {
 
 .notificationButton {
     background-color: gray;
-    color: white;
+    color: rgba(255, 255, 255, 0.4);
     border: none;
     padding: 10px 20px;
     text-align: center;
@@ -171,7 +168,7 @@ ul li {
     display: flex; /* Utilizzo del flexbox per disporre gli elementi in orizzontale */
     justify-content: center; /* Centra gli elementi orizzontalmente */
     align-items: center; /* Centra gli elementi verticalmente */
-    width: 100%; /* Occupa tutta la larghezza disponibile */
+    width: 1420px; /* Occupa tutta la larghezza disponibile */
 }
 
 .notifications {
@@ -180,10 +177,10 @@ ul li {
     font-family: 'Arial', sans-serif; /* Imposta il font */
     font-size: 18px; /* Dimensione del testo */
     color: #333; /* Colore del testo */
-    background-color: white; /* Colore di sfondo */
+    background-color: rgba(255, 255, 255, 0.6);
     padding: 15px; /* Spaziatura interna */
     border-radius: 8px;
-    margin-right: 49px;
+    margin-right: 55px;
 }
 
 .notifications>h2 {
@@ -201,7 +198,7 @@ hr {
 .notifichescorrere {
     overflow-y: scroll;
     top: 0;
-    background-color: white;
+    background-color:transparent;
     height: 200px;
 }
 
@@ -216,7 +213,7 @@ hr {
     padding: 10px;
     background-color: #188a5a;
     font-size: medium;
-    color: white;
+    color: rgba(255, 255, 255, 0.6);
     border: none;
     border-radius: 16px;
     cursor: pointer;
