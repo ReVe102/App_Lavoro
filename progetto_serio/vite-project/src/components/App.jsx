@@ -11,6 +11,7 @@ import HomeComp from './homeComp/HomeComp';
 import HomeEmp from './homeEmp/HomeEmp';
 import NotificationsPage from './NotificationsPage';
 
+
 const socket = io('http://localhost:3000');
 
 const App = () => {
