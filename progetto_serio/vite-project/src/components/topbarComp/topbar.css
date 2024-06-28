@@ -1,12 +1,12 @@
-.topbarContainer{
+.topbarContainer {
     height: 50px;
     width: 100%;
-    background-color: white !important;
+    background-color: rgba(255, 255, 255, 0.6) !important; 
     display: flex;
     align-items: center;
     position: fixed;
     top: 0;
-    z-index:999;
+    z-index: 999;
     box-shadow: 0px 4px 2px -2px gray;
 }
 

@@ -185,6 +185,10 @@ const ProfiloUtente = () => {
 
     return (
         <div className="container">
+         <div className="buttonsUtente">
+                    <Link to="/feedAziende" className="navbarButtonUtente">Business Area</Link>
+                    <Link to="/feedPrivati" className="navbarButtonUtente">Employee Area</Link>
+        </div>
             <div className="header">
                 {userOrAzienda.image === "" || userOrAzienda.image == null
                     ? <img src="/default-pfp-1.jpg" alt="Profile"/>
@@ -193,15 +197,11 @@ const ProfiloUtente = () => {
                     <h1>{userOrAzienda.name} {userOrAzienda.status}</h1>
                     <br />
                 </div>
-                <div className="button-group">
-                    <Link to="/feedAziende" className="navbarLink">Feed aziende</Link>
-                    <Link to="/feedPrivati" className="navbarLink">Feed privati</Link>
-                </div>
                 <button className="chatButton" onClick={handleInterestedClick}>
                     Sono interessato
                 </button>
             </div>
-            <div className="footer">
+            <div className="footerUtente">
                 <div className="leftbar">
                     <div className="titoloLeftbar"><h2>Informazioni</h2></div>
                     {renderInformazioni()}

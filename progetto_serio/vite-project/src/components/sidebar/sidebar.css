@@ -1,9 +1,9 @@
 .sidebar {
+    background-color: rgba(255, 255, 255, 0.6);
     position: fixed;
     top: 150px; /* Spazio sotto la topbar */
     left: 20px; /* Aggiunta posizione a sinistra */
     width: 270px;
-    background-color: white;
     z-index: 1000;
     border: 1px solid #ddd;
     border-radius: 16px;
@@ -26,17 +26,13 @@
     display: flex;
     align-items: center;
     font-size: 17px;
-    background-color: #fff;
+    background-color: transparent; /* Stesso colore della sidebar */
     width: 100%;
     padding: 10px; /* Aumentato padding */
     border-bottom: 2px solid #ddd; /* Linee di separazione più marcate */
     height: auto; /* Altezza automatica per adattarsi al contenuto */
     cursor: pointer;
     box-sizing: border-box; /* Assicura che padding e bordi siano inclusi nella larghezza totale */
-}
-
-.sidebarListItem:last-child {
-    border-bottom: none; /* Rimuove la linea di separazione dall'ultimo elemento */
 }
 
 .sidebarIcon {
