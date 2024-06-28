@@ -7,7 +7,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function PostLogin({ post, handleDelete }) {
     const [like, setLike] = useState(post.likes.length);
-    const PF = import.meta.env.VITE_PUBLIC_FOLDER; // public folder
+    const PF = import.meta.env.VITE_PUBLIC_FOLDER; 
     const [currentUser, setCurrentUser] = useState(null);
 
     useEffect(() => {

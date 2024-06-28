@@ -391,11 +391,11 @@ exports.createPost = async (req, res) => {
             res.status(200).json(savedPost);
         } else if (postType === 'azienda') {
             if (!mongoose.Types.ObjectId.isValid(aziendaId)) {
-                return res.status(400).json("Invalid company ID");
+                return res.sendStatus(400);
             }
             const azienda = await AziendaModel.findById(aziendaId);
             if (!azienda) {
-                return res.status(404).json("Company not found");
+                return res.sendStatus(404);
             }
             const newPost = new PostAziende({
                 aziendaId,
@@ -405,7 +405,7 @@ exports.createPost = async (req, res) => {
             const savedPost = await newPost.save();
             res.status(200).json(savedPost);
         } else {
-            res.status(400).json("Invalid post type");
+            res.sendStatus(400);
         }
     } catch (err) {
         console.error(err);
@@ -423,7 +423,7 @@ exports.getPrivatoById = async (req, res) => {
         console.log('Privato trovato:', privato); 
         res.json(privato);
     } catch (err) {
-        res.status(500).json(500);
+        res.status(500).json(err);
     }
 };
 
@@ -457,7 +457,7 @@ exports.getImages = async (req, res) => {
 exports.getPostsByPrivatoId = async (req, res) => {
     const privatoId = req.params.privatoId;
     if (!mongoose.Types.ObjectId.isValid(privatoId)) {
-        return res.status(400).json({ message: 'ID non valido' });
+        return res.sendstatus(400);
     }
     try {
         const posts = await PostPrivati.find({ privatoId: privatoId }).sort({createdAt:-1});
@@ -475,7 +475,7 @@ exports.getPostsByPrivatoId = async (req, res) => {
 exports.getPostsByAziendaId = async (req, res) => {
     const aziendaId = req.params.aziendaId;
     if (!mongoose.Types.ObjectId.isValid(aziendaId)) {
-        return res.status(400).json({ message: 'ID non riconosciuto' });
+        return res.sendStatus(400);
     }
     try {
         const posts = await PostAziende.find({ aziendaId: aziendaId }).sort({createdAt:-1});

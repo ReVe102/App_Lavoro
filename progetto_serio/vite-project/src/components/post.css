@@ -76,48 +76,6 @@
     font-size: 15px;
 }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #f8f9fa;
-}
-
-.navbarLeft {
-    display: flex;
-}
-
-.navbarLink {
-    margin-right: 20px;
-    text-decoration: none;
-    color: #007bff;
-    font-size: 16px;
-}
-
-.navbarLink:hover {
-    text-decoration: underline;
-}
-
-.navbarRight {
-    display: flex;
-    align-items: center;
-}
-
-.navbarButton {
-    padding: 10px 20px;
-    background-color: #dc3545;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.navbarButton:hover {
-    background-color: #c82333;
-}
-
 .postTopRight{
     position: absolute;
     top: 10px;

@@ -1,21 +1,16 @@
-.homeContainer {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-}
 
 .sidebar {
-    flex: 0 0 270px; /* Assicura che la sidebar abbia una larghezza fissa */
+    flex: 0 0 270px; 
 }
 
 .feed {
     flex: 1;
-    margin-left: 310px; /* Distanza di 3 cm (circa 30px) dalla sidebar */
-    padding-top: 70px; /* Per compensare la topbar */
+    margin-left: 310px; 
+    padding-top: 70px; 
 }
 
 .feedWrapper {
     display: flex;
     flex-direction: column;
-    width: calc(100% - 310px); /* Assicura che i post occupino il resto dello spazio senza sovrapporsi */
+    width: calc(100% - 310px); 
 }

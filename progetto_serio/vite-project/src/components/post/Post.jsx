@@ -9,7 +9,7 @@ export default function Post({ post }) {
     const [like, setLike] = useState(post.likes ? post.likes.length : 0);
     const [isLiked, setIsLiked] = useState(false);
     const [userOrAzienda, setUserOrAzienda] = useState({});
-    const PF = import.meta.env.VITE_PUBLIC_FOLDER; // public folder
+    const PF = import.meta.env.VITE_PUBLIC_FOLDER; 
 
     useEffect(() => {
         const fetchUserOrAzienda = async () => {

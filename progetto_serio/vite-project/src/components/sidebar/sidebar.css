@@ -1,15 +1,15 @@
 .sidebar {
     background-color: rgba(255, 255, 255, 0.6);
     position: fixed;
-    top: 150px; /* Spazio sotto la topbar */
-    left: 20px; /* Aggiunta posizione a sinistra */
+    top: 150px; 
+    left: 20px; 
     width: 270px;
     z-index: 1000;
     border: 1px solid #ddd;
     border-radius: 16px;
     padding: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Aggiunta ombra per effetto di profondità */
-    overflow: hidden; /* Assicura che il contenuto rimanga all'interno dei bordi */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+    overflow: hidden; 
 }
 
 .sidebarWrapper {
@@ -26,13 +26,13 @@
     display: flex;
     align-items: center;
     font-size: 17px;
-    background-color: transparent; /* Stesso colore della sidebar */
+    background-color: transparent; 
     width: 100%;
-    padding: 10px; /* Aumentato padding */
-    border-bottom: 2px solid #ddd; /* Linee di separazione più marcate */
-    height: auto; /* Altezza automatica per adattarsi al contenuto */
+    padding: 10px; 
+    border-bottom: 2px solid #ddd; 
+    height: auto; 
     cursor: pointer;
-    box-sizing: border-box; /* Assicura che padding e bordi siano inclusi nella larghezza totale */
+    box-sizing: border-box; 
 }
 
 .sidebarIcon {
@@ -45,7 +45,7 @@
     color: inherit;
     display: flex;
     align-items: center;
-    width: 100%; /* Assicura che il link riempia l'intera larghezza dell'elemento */
+    width: 100%;
 }
 
 .sidebarListItem:hover {

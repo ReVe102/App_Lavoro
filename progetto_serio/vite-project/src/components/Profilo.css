@@ -42,21 +42,21 @@ body {
 
 .left-buttons {
     display: flex;
-    margin-left: 76px; /* Aggiungi un margine a sinistra di 76px */
+    margin-left: 76px; 
 }
 
 .right-button {
     display: flex;
     justify-content: flex-end;
-    margin-right: 76px; /* Aggiungi un margine a destra di 76px */
+    margin-right: 76px; 
 }
 
 .navbarButton {
     font-size: 17px;
-    background-color: transparent !important; /* Forza lo sfondo trasparente */
+    background-color: transparent !important; 
     color: rgba(255, 255, 255, 0.6);
-    border: 1px solid white !important; /* Forza il bordo bianco */
-    border-radius: 8px !important; /* Forza i bordi arrotondati */
+    border: 1px solid white !important; 
+    border-radius: 8px !important; 
     padding: 10px 20px !important;
     margin: 10px !important;
     cursor: pointer;
@@ -64,7 +64,7 @@ body {
 }
 
 .navbarButton:hover {
-    background-color: rgba(255, 255, 255, 0.1) !important; /* Cambia lo sfondo al passaggio del mouse */
+    background-color: rgba(255, 255, 255, 0.1) !important; 
 }
 
 .footer {
@@ -111,7 +111,7 @@ body {
 }
 
 .vertical-line {
-    border-left: 3px solid #ff0000; /* Imposta uno stile di linea solida nera a sinistra */
+    border-left: 3px solid #ff0000; 
 }
 
 .testo {

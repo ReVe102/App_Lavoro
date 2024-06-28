@@ -1,6 +1,5 @@
 import TopbarEmp from "../topbarEmp/TopbarEmp";
 import Sidebar from "../sidebar/Sidebar";
-import Feed from "../feed/Feed";
 import Post from "../post/Post";
 import "./home.css"
 import React, { useState, useEffect } from "react";
