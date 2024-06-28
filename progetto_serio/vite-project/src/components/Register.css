@@ -11,8 +11,8 @@
 }
 .register-container {
     overflow-y: auto;
-    background-color: #fff;
-    width:700px;
+    background-color: rgba(255, 255, 255, 0.6);   
+     width:700px;
     padding: 10px;
     margin:40px;
     border-radius: 16px;
@@ -136,7 +136,7 @@ select:hover{
     justify-content: center;
     align-items: center;
     height: 45px;
-    background: linear-gradient(#0e9a60,#0c8955);
+    background: #10965e;
     font-weight: 500;
 }
 
@@ -148,7 +148,7 @@ select:hover{
     justify-content: center;
     align-items: center;
     height: 45px;
-    background: #bab7b7;
+    background: #908e8e;
     font-weight: 500;
 }
 
