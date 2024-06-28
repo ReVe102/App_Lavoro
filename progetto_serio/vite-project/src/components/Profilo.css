@@ -34,7 +34,7 @@ body {
 
 .buttons {
     display: flex;
-    justify-content: space-between; /* Distribuisci lo spazio tra i pulsanti a sinistra e destra */
+    justify-content: space-between; 
     align-items: center;
     width: 100%;
     background-color: transparent;
@@ -112,8 +112,10 @@ body {
 }
 
 .vertical-line {
-    border-left: 3px solid #d1d1d1; /* Imposta uno stile di linea solida nera a sinistra */
-    margin: 10px 0;
+    border-left: 3px solid #333; 
+    height: auto;
+    align-self: strecth;
+    margin: 0 20px;
 }
 
 .testo {
@@ -220,3 +222,39 @@ hr {
     cursor: pointer;
 }
 
+.navbarButtonUtente {
+    font-size: 17px;
+    background-color: transparent !important; /* Forza lo sfondo trasparente */
+    color: white !important; /* Forza il colore del testo bianco */
+    border: 1px solid white !important; /* Forza il bordo bianco */
+    border-radius: 8px !important; /* Forza i bordi arrotondati */
+    padding: 10px 20px !important;
+    margin: 10px !important;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.navbarButtonUtente:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important; /* Cambia lo sfondo al passaggio del mouse */
+}
+
+.buttonsUtente {
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+    margin-top: 10px;
+    padding-left: 75px; 
+}
+
+.footerUtente {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    width: 900px;
+}
