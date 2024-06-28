@@ -1,6 +1,7 @@
 import axios from "axios";
 import "./share.css";
 import PermMediaIcon from '@mui/icons-material/AttachFileSharp';
+import SendIcon from '@mui/icons-material/Send';
 import { useRef, useState, useEffect } from "react";
 
 export default function Share() {
@@ -185,7 +186,9 @@ export default function Share() {
                         </label>
                     </div>
                     {image && <img width={100} height={100} src={image} alt="Uploaded" />}
-                    <button className="shareButton" type="submit">Share</button>
+                    <button className="shareButton" type="submit">
+                        Share <SendIcon className="sendIcon" />
+                    </button>
                 </form>
                 <br />
                 {allImage.map(data => (
