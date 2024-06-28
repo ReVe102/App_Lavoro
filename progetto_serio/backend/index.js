@@ -6,11 +6,16 @@ const authRoutes = require('./routes/authRoutes');
 const dotenv = require('dotenv');
 const http = require('http');
 const { Server } = require('socket.io');
+const Notification = require('./models/Notification'); // Importa il modello di notifica
 
 app.use(cors());
 dotenv.config();
 app.use(express.json());
 app.use('/', authRoutes);
+
+// Aumento della dimensione del payload:
+app.use(express.json({ limit: '100mb' }));
+app.use(express.urlencoded({ limit: '100mb', extended: true }));
 
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -19,8 +24,6 @@ const io = new Server(server, {
     }
 });
 
-let notifications = [];
-
 io.on('connection', (socket) => {
     console.log('Un utente si è connesso:', socket.id);
 
@@ -28,15 +31,24 @@ io.on('connection', (socket) => {
         console.log('Un utente si è disconnesso:', socket.id);
     });
 
-    socket.on('interested', (data) => {
+    socket.on('interested', async (data) => {
         const { senderName, senderId, receiverId } = data;
-        const notification = { message: `L'utente ${senderName} è interessato/a alla vostra azienda`, timestamp: new Date() };
-        notifications.push(notification);
-        io.emit('notification', notification);
+        const notification = new Notification({
+            message: `L'utente ${senderName} è interessato/a alla vostra azienda`,
+            receiverId,
+            senderName,
+            senderId
+        });
+        await notification.save();
+
+        // Invia la notifica solo al destinatario specifico
+        socket.to(receiverId).emit('notification', notification);
     });
 });
 
-app.get('/notifications', (req, res) => {
+app.get('/notifications/:userId', async (req, res) => {
+    const { userId } = req.params;
+    const notifications = await Notification.find({ receiverId: userId });
     res.json(notifications);
 });
 

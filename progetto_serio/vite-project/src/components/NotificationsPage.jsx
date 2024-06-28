@@ -11,7 +11,8 @@ const NotificationsPage = () => {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/notifications');
+        const loggedUser = JSON.parse(localStorage.getItem('userData'));
+        const response = await axios.get(`http://localhost:3000/notifications/${loggedUser._id}`);
         setNotifications(response.data);
       } catch (error) {
         console.error('Errore nel recuperare le notifiche', error);
@@ -21,8 +22,11 @@ const NotificationsPage = () => {
     fetchNotifications();
 
     socket.on('notification', (data) => {
-      setNotifications((prevNotifications) => [...prevNotifications, data]);
-      alert(`Nuova notifica: ${data.message}`);
+      const loggedUser = JSON.parse(localStorage.getItem('userData'));
+      if (data.receiverId === loggedUser._id) {
+        setNotifications((prevNotifications) => [...prevNotifications, data]);
+        alert(`Nuova notifica: ${data.message}`);
+      }
     });
 
     // Cleanup the socket connection on component unmount

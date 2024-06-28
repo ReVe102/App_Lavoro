@@ -4,6 +4,7 @@ import io from 'socket.io-client';
 import axios from 'axios';
 import Post from './post/Post';
 import './Profilo.css';
+
 const socket = io('http://localhost:3000');
 
 const ProfiloUtente = () => {
@@ -50,9 +51,9 @@ const ProfiloUtente = () => {
         const data = {
             privatoId,
             aziendaId,
-            senderName: loggedUser.name, // Usa il nome dell'utente autenticato
-            senderId: privatoId || aziendaId,
-            receiverId: aziendaId || privatoId
+            senderName: loggedUser.name,
+            senderId: loggedUser._id,
+            receiverId: privatoId || aziendaId
         };
         socket.emit('interested', data);
     };
@@ -184,10 +185,6 @@ const ProfiloUtente = () => {
 
     return (
         <div className="container">
-            <div className="buttonsUtente">
-                    <Link to="/feedAziende" className="navbarButtonUtente">Business Area</Link>
-                    <Link to="/feedPrivati" className="navbarButtonUtente">Employee Area</Link>
-                </div>
             <div className="header">
                 {userOrAzienda.image === "" || userOrAzienda.image == null
                     ? <img src="/default-pfp-1.jpg" alt="Profile"/>
@@ -196,11 +193,15 @@ const ProfiloUtente = () => {
                     <h1>{userOrAzienda.name} {userOrAzienda.status}</h1>
                     <br />
                 </div>
-                <button id="chatButton" onClick={handleInterestedClick}>
+                <div className="button-group">
+                    <Link to="/feedAziende" className="navbarLink">Feed aziende</Link>
+                    <Link to="/feedPrivati" className="navbarLink">Feed privati</Link>
+                </div>
+                <button className="chatButton" onClick={handleInterestedClick}>
                     Sono interessato
                 </button>
             </div>
-            <div className="footerUtente">
+            <div className="footer">
                 <div className="leftbar">
                     <div className="titoloLeftbar"><h2>Informazioni</h2></div>
                     {renderInformazioni()}
