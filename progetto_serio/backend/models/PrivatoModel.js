@@ -13,6 +13,8 @@ const PrivatoModelSchema = new mongoose.Schema({
     lavoriprecedenti:String,
 
     indirizzosuperiore:String,
+    linguamadre: String,
+    altrelingue: String, 
     corsodilaurea:String,
     posizionelavorativaricercata:String,
     luogonascita:String,
