@@ -5,12 +5,14 @@ import PostLogin from './PostLogin';
 import Notifications from './Notifications';
 import './Profilo.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faBell } from '@fortawesome/free-solid-svg-icons';
+import { faEdit} from '@fortawesome/free-solid-svg-icons';
+import QRCode from 'qrcode.react';
 
 import axios from 'axios';
 import io from 'socket.io-client';
 
 const socket = io('http://localhost:3000');
+
 
 const Profilo = () => {
   const navigate = useNavigate();
@@ -97,6 +99,8 @@ const Profilo = () => {
   if (!userData) {
     return <div>Dati utente non disponibili.</div>;
   }
+  const whatsappLink = `https://wa.me/${userData.cellulare||userData.telefono}`;
+
 
   return (
     <div className="container">
@@ -104,6 +108,11 @@ const Profilo = () => {
         <div className="left-buttons">
           <Link to="/feedAziende" className="navbarButton">Business Area</Link>
           <Link to="/feedPrivati" className="navbarButton">Employee Area</Link>
+          {userData.status === "azienda" && (
+          <button className="navbarButton" type="submit" onClick={handleNotificationsClick}>
+            Notifiche 
+          </button>
+        )}
         </div>
         <div className="right-button">
           <button className="navbarButton" onClick={logout}>Logout</button>
@@ -115,11 +124,7 @@ const Profilo = () => {
           <h1>{userData.name}</h1>
           <br />
         </div>
-        {userData.status === "azienda" && (
-          <button type="submit" onClick={handleNotificationsClick}>
-            Notifiche azienda
-          </button>
-        )}
+        
         <br />
       </div>
 
@@ -241,15 +246,11 @@ const Profilo = () => {
         )}
         <div className="notifications">
           <div className='notifichefissato'>
-            <h2>Notifiche <FontAwesomeIcon icon={faBell} style={{ fontSize: '20px' }}/></h2>
+            <h2>Contattami su Whatsapp </h2>
             <hr/>
           </div>
           <div className='notifichescorrere'>
-            <ul>
-              {notifications.map((notification, index) => (
-                <li key={index}>{notification.message}</li>
-              ))}
-            </ul>
+            <QRCode value={whatsappLink} size={200} />
           </div>
         </div>
       </div>

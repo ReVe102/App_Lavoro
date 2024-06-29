@@ -4,6 +4,8 @@ import io from 'socket.io-client';
 import axios from 'axios';
 import Post from './post/Post';
 import './Profilo.css';
+import QRCode from 'qrcode.react';
+
 
 const socket = io('http://localhost:3000');
 
@@ -182,6 +184,8 @@ const ProfiloUtente = () => {
             }
         }
     };
+    const whatsappLink = `https://wa.me/${userOrAzienda.cellulare||userOrAzienda.telefono}`;
+
 
     return (
         <div className="container">
@@ -197,10 +201,12 @@ const ProfiloUtente = () => {
                     <h1>{userOrAzienda.name} {userOrAzienda.status}</h1>
                     <br />
                 </div>
-                <button className="chatButton" onClick={handleInterestedClick}>
+                <button className="sonointeressato" onClick={handleInterestedClick}>
                     Sono interessato
                 </button>
             </div>
+            <div className='midbar-container'>
+        <div className='midbar'>
             <div className="footerUtente">
                 <div className="leftbar">
                     <div className="titoloLeftbar"><h2>Informazioni</h2></div>
@@ -213,6 +219,17 @@ const ProfiloUtente = () => {
                         {renderParagrafo()}
                     </div>
                 </div>
+            </div>
+            <div className="notifications">
+                <div className='notifichefissato'>
+                <h2>Contattami su Whatsapp </h2>
+                <hr/>
+            </div>
+            <div className='notifichescorrere'>
+                <QRCode value={whatsappLink} size={200} />
+            </div>
+            </div>
+            </div>
             </div>
             <div className="mainbar">
                 <div className="posts">

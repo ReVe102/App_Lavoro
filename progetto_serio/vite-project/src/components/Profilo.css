@@ -200,6 +200,10 @@ hr {
     top: 0;
     background-color:transparent;
     height: 200px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #iconamodifica {
@@ -254,4 +258,35 @@ border-radius: 12px;
 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 margin: 20px auto;
 width: 900px;
+}
+
+#notificheAzienda{
+    margin-left: 200px;
+}
+.midbar{
+    display: flex;
+    flex-direction: row; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    gap: 20px; /* Add some space between the children */
+}
+
+.midbar-container{
+    display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  margin-left: 40px;
+}
+.sonointeressato{
+    margin-left: 300px;
+    display: block;
+
+    width:15%;
+
+    padding: 10px;
+    background-color: #0aac68;
+    border-radius: 16px;
+    font-size: medium;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
