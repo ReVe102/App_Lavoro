@@ -8,7 +8,7 @@ const mongoose=require('mongoose');
 
 exports.register=async (req, res)=>{
     
-    const{name,email,password,image, datanascita, luogo, biografia, impiego, ultimolavoro, lavoriprecedenti,indirizzosuperiore,corsodilaurea,posizionelavorativaricercata,luogonascita,luogoresidenza,cellulare }=req.body;
+    const{name,email,password,image, linguamadre, altrelingue, datanascita, luogo, biografia, impiego, ultimolavoro, lavoriprecedenti,indirizzosuperiore,corsodilaurea,posizionelavorativaricercata,luogonascita,luogoresidenza,cellulare }=req.body;
     const status="privato"
 
     const salt= await bcrypt.genSalt(10);
@@ -27,7 +27,7 @@ exports.register=async (req, res)=>{
                 const newuser = new PrivatoModel({ name:name, email:email, image:image, password:hashedPassword, luogo:luogo, status:status,
                                                 datanascita:datanascita,biografia:biografia,impiego: impiego, ultimolavoro: ultimolavoro, 
                                                 lavoriprecedenti: lavoriprecedenti, indirizzosuperiore: indirizzosuperiore, corsodilaurea: corsodilaurea, posizionelavorativaricercata: posizionelavorativaricercata, 
-                                                luogonascita: luogonascita, luogoresidenza: luogoresidenza, cellulare: cellulare});
+                                                luogonascita: luogonascita, linguamadre:linguamadre,altrelingue:altrelingue, luogoresidenza: luogoresidenza, cellulare: cellulare});
 
                 await newuser.save()
                 res.send({status:"ok"})
@@ -165,7 +165,7 @@ exports.profilo = async (req, res) => {
 };
 
 exports.updateUser=async (req, res)=>{
-    const{name,email, luogo, profilo, biografia, image, impiego, ultimolavoro, lavoriprecedenti,indirizzosuperiore,corsodilaurea,posizionelavorativaricercata,luogonascita,luogoresidenza,cellulare}=req.body;
+    const{name,email, luogo, profilo, linguamadre, altrelingue, biografia, image, impiego, ultimolavoro, lavoriprecedenti,indirizzosuperiore,corsodilaurea,posizionelavorativaricercata,luogonascita,luogoresidenza,cellulare}=req.body;
     const{ status,descrizione, datanascita, cienteladiriferimento, numerodipendenti, fatturatoannuale, mercati, settore, fondatori, ceo, strutturasocietaria, certificazioni, premi, sedelegale, sedioperative, telefono, sitoweb}=req.body;
 
     try{
@@ -177,6 +177,8 @@ exports.updateUser=async (req, res)=>{
                     descrizione: descrizione,
                     status: status,
                     datanascita: datanascita,
+                    linguamadre:linguamadre,
+                    altrelingue:altrelingue,
                     cienteladiriferimento: cienteladiriferimento,
                     numerodipendenti: numerodipendenti,
                     fatturatoannuale: fatturatoannuale,

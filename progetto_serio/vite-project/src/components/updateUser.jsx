@@ -18,6 +18,8 @@ function UpdateUser(){
         luogonascita: "",
         luogoresidenza: "",
         cellulare: "",
+        linguamadre:"",
+        altrelingue:"",
         image: "",
         descrizione: "",
         cienteladiriferimento: "",
@@ -203,6 +205,7 @@ function UpdateUser(){
                         />
                         <label for="ultimolavoro" class="input-label">Ultimo lavoro</label>
                     </div>
+                
 
                     <div className="input-container">
                         <input
@@ -216,6 +219,32 @@ function UpdateUser(){
                             onChange={handleChange}
                         />
                         <label for="lavoriprecedenti" class="input-label">Lavori precedenti</label>
+                    </div>
+                    <div className="input-container">
+                        <input
+                            type="text"
+                            id="linguamadre"
+                            className='input'
+                            name="linguamadre"
+                            required
+                            placeholder=" "
+                            defaultValue={userData.linguamadre}
+                            onChange={handleChange}
+                        />
+                        <label for="linguamadre" class="input-label">Lingua madre</label>
+                    </div>
+                    <div className="input-container">
+                        <input
+                            type="text"
+                            id="altrelingue"
+                            className='input'
+                            name="altrelingue"
+                            required
+                            placeholder=" "
+                            defaultValue={userData.altrelingue}
+                            onChange={handleChange}
+                        />
+                        <label for="altrelingue" class="input-label">Altre lingue</label>
                     </div>
 
                     <div className="input-container">

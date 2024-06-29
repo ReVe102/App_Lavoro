@@ -31,6 +31,8 @@ const Register = () => {
         certificazioni: "",
         premi: "",
         sedelegale: "",
+        linguamadre:"",
+        altrelingue:"",
         sedioperative: "",
         telefono: "",
         sitoweb: "",
