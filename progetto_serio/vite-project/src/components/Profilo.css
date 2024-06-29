@@ -111,18 +111,23 @@ body {
 }
 
 .vertical-line {
-    border-left: 3px solid #ff0000; 
+    border-left: 3px solid #282727; 
+    height: 260px;
+    margin-top: 50px;
 }
 
 .testo {
-    flex: 6;
-    font-family: 'Arial', sans-serif; /* Imposta il font */
-    font-size: 18px; /* Dimensione del testo */
-    line-height: 1.6; /* Altezza della linea per migliorare la leggibilità */
-    color: #333; /* Colore del testo */
+    font-family: 'Arial', sans-serif; 
+    font-size: 18px; 
+    line-height: 1.6; 
+    color: #333; 
     background-color:transparent;
     height: 260px;
-    padding: 5px; /* Spaziatura interna */
+    padding: 5px; 
+}
+
+.paragrafo{
+    flex:6;
 }
 
 .paragrafo>h2 {
@@ -252,12 +257,13 @@ padding-left: 75px;
 .footerUtente {
 background-color: rgba(255, 255, 255, 0.6);
 display: flex;
-align-items: center;
+align-items: flex-start;
 justify-content: center; 
 border-radius: 12px;
 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 margin: 20px auto;
 width: 900px;
+padding: 20px;
 }
 
 #notificheAzienda{
