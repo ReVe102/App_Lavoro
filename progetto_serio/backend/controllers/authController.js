@@ -146,7 +146,7 @@ exports.profilo = async (req, res) => {
                     res.status(500).send({ status: "error", data: "Internal server error" });
                 });
         } else {
-            AziendaModel.findOne({ email: useremail })
+            AziendaModel.findOne({ email: useremail }) //cerca un documento nel modello AziendaModel con l'email dell'utente.
                 .then((data) => {
                     if (!data) {
                         return res.status(404).send({ status: "error", data: "User not found" });
@@ -232,10 +232,10 @@ exports.updateUser=async (req, res)=>{
 }
 
 
-exports.uploadImmage=async(req,res)=>{
+exports.uploadImmage=async(req,res)=>{  
     const {image}=req.body;
     try{
-        Images.create({image:image});
+        Images.create({image:image});     //Tenta di creare un nuovo record nel database utilizzando il modello Images con l'immagine fornita
 
         res.send({Status:"ok"})
 
@@ -270,7 +270,7 @@ exports.likePost = async (req, res) => {
             return res.status(400).json({ error: 'Invalid token.' });
         }
         const { postId, postType } = req.body;
-        const PostModel = postType === 'user' ? PostPrivati : PostAziende;
+        const PostModel = postType === 'user' ? PostPrivati : PostAziende;   //Seleziona il modello di post appropriato in base al tipo di post (user o azienda).
         const post = await PostModel.findById(postId);
         if (!post.likes.includes(userId)) {
             await post.updateOne({ $push: { likes: userId } }); //metto like
@@ -289,7 +289,7 @@ exports.getAllAziendaPosts = async (req, res) => {
     try {
         const aziendaPosts = await PostAziende.aggregate([
             {
-                $sort: { createdAt: -1 } 
+                $sort: { createdAt: -1 }  //Ordinare i documenti per data di creazione permette di trattare prima i post più recenti.
             },
             {
                 $group: {
