@@ -17,7 +17,7 @@ exports.register=async (req, res)=>{
     try{
         const existingUser = await PrivatoModel.findOne({ email });
 
-        if (!email || !password) { //se manca uno dei 2 invia errore
+        if (!email || !password) { //verifica se l'email o la password sono mancanti.
         return res.json("mancaqualcosa");
         }else{
             if(existingUser) {  //se mail gia usata
