@@ -14,8 +14,8 @@ dotenv.config();
 app.use(express.json());
 app.use('/', authRoutes);
 
-app.use(express.json({ limit: '100mb' }));
-app.use(express.urlencoded({ limit: '100mb', extended: true }));
+app.use(express.json({ limit: '20mb' }));
+app.use(express.urlencoded({ limit: '20mb', extended: true }));
 
 const server = http.createServer(app);
 const io = new Server(server, {

@@ -267,7 +267,7 @@ exports.likePost = async (req, res) => {
             return res.status(400).json({ error: 'Invalid token.' });
         }
         const { postId, postType } = req.body;
-        const PostModel = postType === 'user' ? PostPrivati : PostAziende;   //Seleziona il modello di post appropriato in base al tipo di post (user o azienda).
+        const PostModel = postType === 'user' ? PostPrivati : PostAziende;   
         const post = await PostModel.findById(postId);
         if (!post.likes.includes(userId)) {
             await post.updateOne({ $push: { likes: userId } }); //metto like
@@ -286,7 +286,7 @@ exports.getAllAziendaPosts = async (req, res) => {
     try {
         const aziendaPosts = await PostAziende.aggregate([
             {
-                $sort: { createdAt: -1 }  //Ordinare i documenti per data di creazione permette di trattare prima i post più recenti.
+                $sort: { createdAt: -1 }  //Ordino post per data di creazione
             },
             {
                 $group: {
