@@ -6,7 +6,7 @@ export default function TopbarEmp(){
         <div className="topbarContainer">
             <div className="topbarLeft"> 
             <Link to="/" style={{textDecoration:"none"}}>
-            <span className="logo"> SOCIAL Employee Area</span>
+            <span className="logo">Employee Area</span>
             </Link>
             </div>
         </div>

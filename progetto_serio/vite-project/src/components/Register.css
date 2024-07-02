@@ -16,8 +16,8 @@
     padding: 10px;
     margin:40px;
     border-radius: 16px;
-    max-height: 85vh; /* Altezza massima del contenitore */
-     /* Abilita lo scorrimento verticale */
+    max-height: 85vh; 
+    
 }
 .register-container h2 {
     margin: 15px;
@@ -167,7 +167,7 @@ select:hover{
 }
 .input-label {
     position: absolute;
-    top: -10px; /* Posizione il label sopra l'input */
+    top: -10px; 
     left: 60px;
     background-color:white;
     border-radius: 10px;

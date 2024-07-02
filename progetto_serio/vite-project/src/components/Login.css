@@ -24,13 +24,12 @@
     text-align: center;
 }
 .login-container {
-    max-height: 90vh; /* Altezza massima del contenitore */
-     /* Abilita lo scorrimento verticale */
+    max-height: 90vh; 
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 18px;
-    max-width: 600px; /* Larghezza massima del contenitore */
-    margin: 0 auto; /* Centra il contenitore */
+    max-width: 600px; 
+    margin: 0 auto;
 }
 
 .form-group {
