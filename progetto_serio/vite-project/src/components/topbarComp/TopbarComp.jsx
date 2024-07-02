@@ -6,7 +6,7 @@ export default function TopbarComp(){
         <div className="topbarContainer">
             <div className="topbarLeft"> 
             <Link to="/" style={{textDecoration:"none"}}>
-            <span className="logo"> SOCIAL Business area</span>
+            <span className="logo">Business area</span>
             </Link>
             </div>
         </div>
