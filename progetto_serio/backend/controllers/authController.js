@@ -294,14 +294,14 @@ exports.getAllAziendaPosts = async (req, res) => {
             {
                 $group: {
                     _id: "$aziendaId", 
-                    latestPost: { $first: "$$ROOT" } 
+                    latestPost: { $first: "$$ROOT" }  //Raggruppa i documenti per aziendaId.Per ogni gruppo, latestPost contiene il primo documento del gruppo(più recente grazie all'ordinamento)
                 }
             },
             {
-                $replaceRoot: { newRoot: "$latestPost" } 
+                $replaceRoot: { newRoot: "$latestPost" }  //Sostituisce il documento corrente con il contenuto di latestPost.
             },
             {
-                $sort: { createdAt: -1 } 
+                $sort: { createdAt: -1 } //Dopo aver ottenuto i post più recenti per ogni azienda, li riordiniamo per data di creazione.
             }
         ]);
         res.status(200).json(aziendaPosts);
@@ -418,12 +418,12 @@ exports.createPost = async (req, res) => {
 //logica per recuperare i dati di un privato dato l'ID
 exports.getPrivatoById = async (req, res) => {
     try {
-        const privato = await PrivatoModel.findById(req.params.privatoId);
+        const privato = await PrivatoModel.findById(req.params.privatoId);  //Questa riga tenta di trovare un documento nel database utilizzando il modello PrivatoModel e il metodo findById, che cerca un documento per ID(L'ID viene preso dai parametri della richiesta (req.params.privatoId))
         if (!privato) {
             return res.sendStatus(404);
         }
         console.log('Privato trovato:', privato); 
-        res.json(privato);
+        res.json(privato); //Questa riga invia una risposta JSON al client contenente i dati del documento privato trovato. Utilizzare res.json è un modo comune per inviare dati strutturati in formato JSON al client.
     } catch (err) {
         res.status(500).json(err);
     }
@@ -466,7 +466,7 @@ exports.getPostsByPrivatoId = async (req, res) => {
         if (posts.length === 0) {
             return res.sendStatus(404);
         }
-        res.status(200).json(posts);
+        res.status(200).json(posts); //I post trovati vengono inviati al client in formato JSON
     } catch (err) {
         console.error(err);
         res.sendStatus(500);
