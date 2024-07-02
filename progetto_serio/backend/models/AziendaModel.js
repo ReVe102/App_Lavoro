@@ -16,7 +16,7 @@ const AziendaModelSchema = new mongoose.Schema({
     fondatori:String,
     ceo:String,
     strutturasocietaria:String,
-    certificazioni:String,  //c ertif qualita
+    certificazioni:String,  //certif qualita
     premi:String,
 
     luogonascita:String,
