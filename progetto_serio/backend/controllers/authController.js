@@ -59,7 +59,7 @@ exports.registerAzienda=async (req, res)=>{
             if(existingUser) {  //se mail gia usata
             return res.json('esistegia');
             }else{
-                // salva i dati in users
+                // salva i dati 
                 const newuser = new AziendaModel({ name:name, email:email, image:image, password:hashedPassword, descrizione:descrizione, status:status, datanascita:datanascita, cienteladiriferimento:cienteladiriferimento, numerodipendenti:numerodipendenti, fatturatoannuale:fatturatoannuale, mercati:mercati, settore:settore, fondatori:fondatori, ceo:ceo, strutturasocietaria:strutturasocietaria, certificazioni:certificazioni, premi:premi, luogonascita:luogonascita, sedelegale:sedelegale, sedioperative:sedioperative, telefono:telefono, sitoweb:sitoweb});
 
                 await newuser.save()
@@ -102,11 +102,8 @@ exports.login = async (req, res) => {
             email: utentepresente.email,
             status: utentepresente.status
         }, process.env.JWT_SECRET, {
-            expiresIn: 86400, // 24 hours
+            expiresIn: 86400, // 24 ore
         });
-
-        // Log dell'ID dell'utente loggato
-        console.log('User ID during login:', utentepresente._id);
 
         return res.status(201).json({ status: 'ok', data: token });
     } catch (error) {

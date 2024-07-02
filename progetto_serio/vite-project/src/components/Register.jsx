@@ -91,7 +91,7 @@ const Register = () => {
                 },
                 body: JSON.stringify({
                     ...formData,
-                    userType // Aggiungi il tipo di utente nel payload della richiesta
+                    userType 
                 }),
             }).then((res) => res.json())
                 .then((data) => {
