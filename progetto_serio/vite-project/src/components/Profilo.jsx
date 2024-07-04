@@ -30,23 +30,26 @@ const Profilo = () => {
           throw new Error('Token non trovato');
         }
 
-        const userDataResponse = await axios.post('http://localhost:3000/userData', { token });
+        const userDataResponse = await axios.post('http://localhost:3000/userData', { token });  
+        //Invia una richiesta POST all’endpoint /userData con il token.
         if (userDataResponse.data.status === 'error' && userDataResponse.data.data === 'token expired') {
           alert('Token scaduto. Effettua il login.');
           window.localStorage.clear();
           navigate('/Login');
         } else {
+          //Se la richiesta ha successo, aggiorna lo stato con i dati dell’utente e salva i dati nel localStorage.
           setUserData(userDataResponse.data.data);
           window.localStorage.setItem('userData', JSON.stringify(userDataResponse.data.data));
 
           const postsResponse = await axios.get('http://localhost:3000/posts/profilo', {
+            //Invia una richiesta GET all’endpoint /posts/profilo con il token nel header di autorizzazione.
             headers: {
               Authorization: token
             }
           });
 
           const sortedPosts = postsResponse.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));//Ordina i post per data di creazione, dal più recente al più vecchio.
-
+          //ordina i post
           setUserPosts(sortedPosts);  //Aggiorna lo stato userPosts con i post ordinati.
         }
         setLoading(false); //Imposta loading su false per indicare che il caricamento è terminato.
@@ -69,7 +72,11 @@ const Profilo = () => {
     fetchNotifications();
 
     socket.on('notification', (data) => {
+      //Ascolta l’evento notification proveniente dal server tramite il socket WebSocket.
+      // Quando il server emette una notifica, questa funzione di callback viene eseguita.
       setNotifications((prevNotifications) => [...prevNotifications, data]);
+      //È una funzione usata per aggiornare lo stato delle notifiche
+      //Crea un nuovo array che contiene tutte le notifiche precedenti più la nuova notifica (data).
       alert(`Nuova notifica: ${data.message}`);
     });
 
