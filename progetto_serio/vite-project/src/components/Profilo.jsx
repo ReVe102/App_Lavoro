@@ -45,10 +45,11 @@ const Profilo = () => {
             }
           });
 
-          const sortedPosts = postsResponse.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-          setUserPosts(sortedPosts);
+          const sortedPosts = postsResponse.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));//Ordina i post per data di creazione, dal più recente al più vecchio.
+
+          setUserPosts(sortedPosts);  //Aggiorna lo stato userPosts con i post ordinati.
         }
-        setLoading(false);
+        setLoading(false); //Imposta loading su false per indicare che il caricamento è terminato.
       } catch (error) {
         console.error('Errore nel recuperare i dati dell\'utente', error);
         setLoading(false);
@@ -79,9 +80,9 @@ const Profilo = () => {
 
   useEffect(() => {
     if (userData) {
-      socket.emit('join', userData._id);
+      socket.emit('join', userData._id); //Unirsi a una stanza specifica del socket basata sull'ID dell'utente permette di ricevere notifiche e aggiornamenti in tempo reale per quell'utente specifico. 
     }
-  }, [userData]);
+  }, [userData]);   //In questo caso, viene eseguito ogni volta che userData cambia.
 
   const logout = () => {
     window.localStorage.clear();
@@ -89,7 +90,8 @@ const Profilo = () => {
   };
 
   const handleNotificationsClick = () => {
-    navigate('/notifications');
+    navigate('/notifications');  //Funzione per gestire il click sul pulsante delle notifiche.
+                                   //Reindirizza l'utente alla pagina delle notifiche.
   };
 
   if (loading) {

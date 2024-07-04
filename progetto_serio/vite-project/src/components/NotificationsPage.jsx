@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 import './NotificationsPage.css';
 import axios from 'axios';
 
-const socket = io('http://localhost:3000');
+const socket = io('http://localhost:3000');  
 
 const NotificationsPage = () => {
   const [notifications, setNotifications] = useState([]);
@@ -17,10 +17,10 @@ const NotificationsPage = () => {
       } catch (error) {
         console.error('Errore nel recuperare le notifiche', error);
       }
-    };
+    }; //recupero delle notifiche
 
-    fetchNotifications();
-
+    fetchNotifications();  //Ascolto degli eventi WebSocket
+//Chiama la funzione per recuperare le notifiche quando il componente viene montato
     socket.on('notification', (data) => {
       const loggedUser = JSON.parse(localStorage.getItem('userData'));
       if (data.receiverId === loggedUser._id) {
@@ -34,10 +34,11 @@ const NotificationsPage = () => {
     };
   }, []);
 
+  //Effetto per unirsi alla stanza delle notifiche
   useEffect(() => {
     const loggedUser = JSON.parse(localStorage.getItem('userData'));
     if (loggedUser) {
-      socket.emit('join', loggedUser._id);
+      socket.emit('join', loggedUser._id); //Unirsi alla stanza delle notifiche permette al server di sapere che l'utente è connesso e pronto a ricevere notifiche in tempo reale.
     }
   }, []);
 

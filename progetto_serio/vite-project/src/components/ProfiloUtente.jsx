@@ -49,9 +49,10 @@ const ProfiloUtente = () => {
     }, [privatoId, aziendaId]);
 
     const handleInterestedClick = () => {
-        const loggedUser = JSON.parse(localStorage.getItem('userData'));
+        const loggedUser = JSON.parse(localStorage.getItem('userData'));    //Questa riga accede al localStorage del browser per recuperare un elemento chiamato userData.
+                                                                            // Questo elemento è una stringa JSON che contiene le informazioni dell'utente loggato. La funzione getItem restituisce questa stringa, che viene poi convertita in un oggetto JavaScript utilizzando JSON.parse. Il risultato viene memorizzato nella variabile loggedUser. 
         const data = {
-            privatoId,
+            privatoId,             //Questa riga crea un oggetto data che contiene le seguenti proprietà: 
             aziendaId,
             senderName: loggedUser.name,
             senderId: loggedUser._id,
