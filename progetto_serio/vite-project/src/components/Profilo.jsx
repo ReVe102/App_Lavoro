@@ -279,7 +279,7 @@ const Profilo = () => {
       </div>
       {userPosts.map((post) => (
       <div key={post._id}>
-      <PostLogin post={post} handleDelete={handleDelete} />
+      <PostLogin post={post} handleDelete={handleDelete} postType={userData.status === 'azienda' ? 'azienda' : 'privato'}/>
       </div>
 ))}
     </div>

@@ -5,7 +5,7 @@ import { format } from "timeago.js";
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-export default function PostLogin({ post, handleDelete }) {
+export default function PostLogin({ post, handleDelete, postType }) {
     const [like, setLike] = useState(post.likes.length);
     const PF = import.meta.env.VITE_PUBLIC_FOLDER; 
     const [currentUser, setCurrentUser] = useState(null);
@@ -50,8 +50,8 @@ export default function PostLogin({ post, handleDelete }) {
                         <span className="postDate">{format(post.createdAt)}</span>
                     </div>
                     <div className="postTopRight">
-                        <DeleteIcon className="DeleteIcon" onClick={() => handleDelete(post._id)} />
-                        <button onClick={() => handleDelete(post._id)}>Elimina Post</button>
+                        <DeleteIcon className="DeleteIcon" onClick={() => handleDelete(post._id, postType)} />
+                        <button onClick={() => handleDelete(post._id, postType)}>Elimina Post</button>
                     </div>
                 </div>
                 <div className="postCenter">

@@ -489,26 +489,18 @@ exports.getPostsByAziendaId = async (req, res) => {
 
 // Funzione per eliminare un post
 exports.deletePost = async (req, res) => {
-    const { postId } = req.params;
+    const { postId, postType } = req.params;
     if (!mongoose.Types.ObjectId.isValid(postId)) {
         return res.status(400).json({ message: 'ID non riconosciuto' });
     }
+    const PostModel = postType === 'privato' ? PostPrivati : PostAziende;
     try {
-        //verifico prima se il post sta in PostPrivati
-        let post = await PostPrivati.findById(postId);
-        if (post) {
-            await PostPrivati.findByIdAndDelete(postId);
-            return res.status(200).json({ message: 'Post eliminato con successo' });
-        } 
-        // Se non è il PostPrivati è in PostAziende
-        post = await PostAziende.findById(postId);
-        if (post) {
-            await PostAziende.findByIdAndDelete(postId);
-            return res.status(200).json({ message: 'Post eliminato con successo' });
+        const post = await PostModel.findByIdAndDelete(postId);
+        if (!post) {
+            return res.sendStatus(404);
         }
-        // Se non è nè in PostPrivati nè in PostAziende
-        return res.status(404);
+        res.status(200).json({ message: 'Post eliminato con successo' });
     } catch (err) {
-        return res.status(500).json(err);
+        res.sendStatus(500).json(err);
     }
 };
