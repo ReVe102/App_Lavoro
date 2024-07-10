@@ -32,10 +32,73 @@
     margin: 0 auto;
 }
 
+.form-group-custom{
+    display:flex;
+    flex-direction: column;
+}
+
 .form-group {
     display: flex;
     flex-direction: column;
 }
+
+.input-custom {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 100%; 
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #eaeaea;
+}
+
+.input-custom img {
+    margin: 0 10px;
+    height: 50%;
+}
+
+.input-custom input {
+    height: 50px;
+    width: 100%; 
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #797979;
+}
+
+.button-custom {
+    display: block;
+    margin: 30px auto;
+    width: 100%; 
+    padding: 10px;
+    background-color: #198e5d;
+    font-size: medium;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.button-custom:hover {
+    background-color: #0f583a;
+}
+
+select {
+    width: 100%; 
+    display: block;
+    padding: 10px;
+    border: 2px solid #169761;
+    border-radius: 8px;
+    background-color: white;
+    background-size: 16px 12px;
+    cursor: pointer;
+}
+
+.domanda {
+    text-align: center; 
+}
+
 .inputs{
     display: flex;
     flex-direction: column;
@@ -65,7 +128,7 @@
     background: transparent;
     border: none;
     outline: none;
-    color: #797979
+    color: #797979;
 }
 
 
@@ -83,7 +146,6 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-
 
 }
 .form-group button:hover {

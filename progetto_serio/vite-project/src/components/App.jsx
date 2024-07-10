@@ -10,6 +10,7 @@ import UpdateUser from './updateUser';
 import HomeComp from './homeComp/HomeComp';
 import HomeEmp from './homeEmp/HomeEmp';
 import NotificationsPage from './NotificationsPage';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const socket = io('http://localhost:3000');

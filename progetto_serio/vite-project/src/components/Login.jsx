@@ -1,17 +1,16 @@
 import { Component } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import "./Login.css"
+import "./Login.css";
 import React, { useState } from "react";
 
-import password_icon from '../assets/password.png'
-import email_icon from '../assets/person.png'
-
+import password_icon from '../assets/password.png';
+import email_icon from '../assets/person.png';
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [status, setStatus] = useState("privato")
+  const [status, setStatus] = useState("privato");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -67,56 +66,52 @@ export default function Login() {
     <div className="login">
       <div className="login-container">
         <h2>Accedi</h2>
-        <div className="form-group">
-          <form onSubmit={handleSubmit} action="input" method="post">
-            <div className="inputs">
+        <div className="form-group form-group-custom">
+          <form onSubmit={handleSubmit}>
+            <div className="inputs mb-3">
+              <div className="input input-custom mb-3">
+                <img src={email_icon} alt="Email Icon"/>
+                <input
+                  type="text"
+                  id="email"
+                  name="email"
+                  className="form-control"
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  placeholder="E-mail"
+                />
+              </div>
 
-            <div className="input">
-              <img src={email_icon} alt=""/>
-              <input
-              type="text"
-              id="email"
-              name="email"
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              placeholder="E-mail"
-              />
+              <div className="input input-custom mb-3">
+                <img src={password_icon} alt="Password Icon"/>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  className="form-control"
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  required
+                />
+              </div>
             </div>
 
-            <div className="input">
-              <img src={password_icon} alt=""/>
-              <input
-              type="password"
-              id="password"
-              name="password"
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              required
-            />
-            </div>
-            
-            
-            </div>
-            
-            
             <select
               id="status"
               name="status"
-              class="custom-select"
+              className="form-select mb-3"
               onChange={(e) => setStatus(e.target.value)}
               required
             >
               <option value="privato">Privato</option>
               <option value="azienda">Azienda</option>
             </select>
-            
-            
 
-            <button type="submit">Accedi</button>
+            <button type="submit" className="button-custom btn btn-success w-100">Accedi</button>
           </form>
         </div>
-        <div className="domanda">Non hai un account?
-          <a href="/register"> Registrati</a>
+        <div className="domanda mt-3 text-center">Non hai un account?
+          <a href="/register" className="text-success"> Registrati</a>
         </div>
       </div>
     </div>
