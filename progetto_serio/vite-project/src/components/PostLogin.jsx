@@ -50,7 +50,7 @@ export default function PostLogin({ post, handleDelete }) {
                         <span className="postDate">{format(post.createdAt)}</span>
                     </div>
                     <div className="postTopRight">
-                        <DeleteIcon className="DeleteIcon" />
+                        <DeleteIcon className="DeleteIcon" onClick={() => handleDelete(post._id)} />
                         <button onClick={() => handleDelete(post._id)}>Elimina Post</button>
                     </div>
                 </div>

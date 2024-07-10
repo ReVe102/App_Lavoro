@@ -34,11 +34,10 @@ const NotificationsPage = () => {
     };
   }, []);
 
-  //Effetto per unirsi alla stanza delle notifiche
   useEffect(() => {
     const loggedUser = JSON.parse(localStorage.getItem('userData'));
     if (loggedUser) {
-      socket.emit('join', loggedUser._id); //Unirsi alla stanza delle notifiche permette al server di sapere che l'utente è connesso e pronto a ricevere notifiche in tempo reale.
+      socket.emit('join', loggedUser._id); 
     }
   }, []);
 

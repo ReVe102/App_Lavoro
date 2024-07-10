@@ -1,4 +1,4 @@
-// server.js
+
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -24,7 +24,6 @@ const io = new Server(server, {
     }
 });
 
-
 io.on('connection', (socket) => {
     console.log('Un utente si è connesso:', socket.id);
 
@@ -42,11 +41,11 @@ io.on('connection', (socket) => {
         });
         await notification.save();
 
-        io.to(receiverId).emit('notification', notification); // Invia la notifica al destinatario specifico
+        io.to(receiverId).emit('notification', notification); 
     });
 
     socket.on('join', (userId) => {
-        socket.join(userId); // Unisciti alla stanza corrispondente all'ID utente
+        socket.join(userId); 
     });
 });
 

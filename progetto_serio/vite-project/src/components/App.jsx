@@ -18,7 +18,6 @@ const App = () => {
   useEffect(() => {
     socket.on('notification', (data) => {
       console.log(data.message);
-      // Gestisci la visualizzazione delle notifiche
     });
   }, []);
 

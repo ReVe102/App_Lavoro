@@ -5,7 +5,7 @@ export default function TopbarComp(){
     return(
         <div className="topbarContainer">
             <div className="topbarLeft"> 
-            <Link to="/" style={{textDecoration:"none"}}>
+            <Link to="/" style={{textDecoration:"none"}}> {/*rimuove la sottolineatura di link */}
             <span className="logo">Business area</span>
             </Link>
             </div>

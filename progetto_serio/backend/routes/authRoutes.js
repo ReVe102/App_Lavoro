@@ -40,5 +40,4 @@ router.get('/posts/azienda/:aziendaId', authController.getPostsByAziendaId);
 
 router.delete('/posts/:postType/:postId', authController.deletePost);
 
-
 module.exports = router;

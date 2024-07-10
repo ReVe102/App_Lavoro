@@ -39,7 +39,7 @@ const Register = () => {
         status:"",
     });
 
-    const [userType, setUserType] = useState("privato"); // Stato per gestire la selezione tra Azienda e Privato
+    const [userType, setUserType] = useState("privato"); 
     const navigate = useNavigate();
 
     const handleFileChange = (e) => {
@@ -57,8 +57,7 @@ const Register = () => {
                 console.error("Error: ", error);
             };
         }
-    };  //La funzione legge il file selezionato, lo converte in un URL in formato base64 utilizzando un FileReader e aggiorna 
-         //lo stato del form con il risultato della lettura. Ecco una spiegazione dettagliata di come funziona:
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -72,7 +71,7 @@ const Register = () => {
                     Accept: "application/json",
                     "Access-Control-Allow-Origin": "*",
                 },
-                body: JSON.stringify({  //conversione dei dati del form e dello usertype in json per inviarli nella richiesta post
+                body: JSON.stringify({  
                     ...formData,
                     userType 
                 }),
@@ -104,10 +103,8 @@ const Register = () => {
     };
 
     const handleChange = (e) => {
-        const { name, value } = e.target; //elemento del form
-        setFormData(prevState => ({  //Crea un nuovo oggetto stato che copia tutte le proprietà dello stato precedente (prevState) e 
-                                        //aggiorna solo la proprietà corrispondente al nome del campo di input che è cambiato. 
-                                        //La sintassi [name]: value è una proprietà calcolata, che permette di usare il valore della variabile name come chiave.
+        const { name, value } = e.target; 
+        setFormData(prevState => ({ 
             ...prevState,
             [name]: value
         }));
