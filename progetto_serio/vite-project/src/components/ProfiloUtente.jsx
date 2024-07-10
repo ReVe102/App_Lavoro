@@ -10,7 +10,7 @@ import QRCode from 'qrcode.react';
 const socket = io('http://localhost:3000');
 
 const ProfiloUtente = () => {
-    const { privatoId, aziendaId } = useParams();
+    const { privatoId, aziendaId } = useParams(); //react-router-dom per estrarre parametri presi dall'url
     const [userOrAzienda, setUserOrAzienda] = useState({});
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);

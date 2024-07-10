@@ -81,7 +81,7 @@ const Profilo = () => {
     });
 
     return () => {
-      socket.off('notification');
+      socket.off('notification'); //rimuove ascoltatore precedentemente registrato nell'evento notification
     };
   }, [navigate]);
 

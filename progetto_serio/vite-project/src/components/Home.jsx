@@ -9,7 +9,7 @@ export default class Home extends Component{
     }
   }
   
-  componentDidMount(){
+  componentDidMount(){  //metodo chiamato non appena una componente è inserita nel DOM
     fetch("http://localhost:3000/userData",{
             method:"POST",
             crossDomain:true,
